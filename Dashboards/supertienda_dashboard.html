@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supertienda · Dashboard Analítico 2019–2023</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  --teal:    #1D9E75;
+  --teal-d:  #147a59;
+  --teal-g:  rgba(29,158,117,.08);
+  --purple:  #534AB7;
+  --purp-d:  #3e388a;
+  --purp-g:  rgba(83,74,183,.08);
+  --amber:   #E8592A;
+  --amber-g: rgba(232,89,42,.08);
+  --blue:    #3B83BD;
+  --blue-g:  rgba(59,131,189,.08);
+  --gold:    #f0a500;
+  --black:   #0C0C0F;
+  --dark:    #111116;
+  --panel:   #16161d;
+  --panel2:  #1c1c25;
+  --border:  #252530;
+  --text:    #d8d8e8;
+  --muted:   #6b6b80;
+  --white:   #ffffff;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* ── SCROLLBAR ───────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ── NAV ─────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(12,12,15,.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 2px;
+  padding: 0 28px; height: 50px;
+  overflow-x: auto; white-space: nowrap;
+}
+nav::-webkit-scrollbar { height: 0; }
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: var(--teal);
+  letter-spacing: -.3px;
+  margin-right: 24px; flex-shrink: 0;
+}
+.nav-logo span { color: var(--white); }
+nav a {
+  text-decoration: none; color: var(--muted);
+  font-size: 12px; font-weight: 500;
+  padding: 5px 11px; border-radius: 5px;
+  transition: all .18s; flex-shrink: 0;
+}
+nav a:hover { color: var(--text); background: var(--panel); }
+nav a.active { color: var(--white); background: var(--panel2); }
+
+/* ── HERO ────────────────────────────── */
+.hero {
+  position: relative; overflow: hidden;
+  padding: 64px 40px 56px;
+  background: linear-gradient(135deg, #0C0C0F 0%, #0f0f1a 40%, #111120 100%);
+  border-bottom: 1px solid var(--border);
+}
+.hero-bg-icon {
+  position: absolute; right: 40px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 200px; opacity: .035;
+  pointer-events: none;
+  animation: breathe 5s ease-in-out infinite;
+}
+@keyframes breathe { 0%,100%{opacity:.035} 50%{opacity:.06} }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--teal-g); border: 1px solid rgba(29,158,117,.25);
+  color: var(--teal); font-size: 11px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 20px; margin-bottom: 18px;
+}
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(38px, 6vw, 68px);
+  font-weight: 700; line-height: 1.05;
+  color: var(--white); letter-spacing: -.5px;
+  margin-bottom: 8px;
+}
+.hero h1 em { font-style: normal; color: var(--teal); }
+.hero-sub {
+  font-size: 15px; color: var(--muted);
+  max-width: 580px; margin-bottom: 40px;
+  line-height: 1.6;
+}
+.hero-kpis { display: flex; gap: 32px; flex-wrap: wrap; }
+.hero-kpi {}
+.hk-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 38px; font-weight: 700;
+  color: var(--white); line-height: 1;
+}
+.hk-val.teal { color: var(--teal); }
+.hk-val.purple { color: var(--purple); }
+.hk-val.amber { color: var(--amber); }
+.hk-lbl {
+  font-size: 11px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .8px;
+  margin-top: 3px;
+}
+
+/* ── LAYOUT ──────────────────────────── */
+section {
+  padding: 48px 32px;
+  border-bottom: 1px solid var(--border);
+}
+section:last-child { border-bottom: none; }
+
+.sec-head {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 28px;
+}
+.sec-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 3px;
+}
+.badge-teal   { background: var(--teal-g);  color: var(--teal);   border: 1px solid rgba(29,158,117,.3); }
+.badge-purple { background: var(--purp-g);  color: var(--purple); border: 1px solid rgba(83,74,183,.3); }
+.badge-amber  { background: var(--amber-g); color: var(--amber);  border: 1px solid rgba(232,89,42,.3); }
+.badge-blue   { background: var(--blue-g);  color: var(--blue);   border: 1px solid rgba(59,131,189,.3); }
+.badge-gold   { background: rgba(240,165,0,.08); color: var(--gold); border: 1px solid rgba(240,165,0,.3); }
+
+.sec-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px; font-weight: 600;
+  color: var(--white);
+}
+
+/* ── GRIDS ───────────────────────────── */
+.g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+.g5 { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; }
+@media(max-width:920px) {
+  .g5,.g4 { grid-template-columns: repeat(2,1fr); }
+  .g3 { grid-template-columns: repeat(2,1fr); }
+}
+@media(max-width:560px) {
+  .g2,.g3,.g4,.g5 { grid-template-columns: 1fr; }
+  section { padding: 32px 16px; }
+  .hero { padding: 44px 16px 36px; }
+}
+
+/* ── CARDS ───────────────────────────── */
+.card {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px 20px;
+}
+.card-t {
+  font-size: 10px; font-weight: 600; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 7px;
+}
+.card-v {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 30px; font-weight: 700; color: var(--white); line-height: 1.1;
+}
+.card-v.teal   { color: var(--teal); }
+.card-v.purple { color: var(--purple); }
+.card-v.amber  { color: var(--amber); }
+.card-v.blue   { color: var(--blue); }
+.card-v.gold   { color: var(--gold); }
+.card-n { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+/* ── MINI KPI ROW ────────────────────── */
+.kpi-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+.kpi {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 8px; padding: 14px 18px;
+  flex: 1; min-width: 130px;
+}
+.kpi-v {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 26px; font-weight: 700; line-height: 1;
+}
+.kpi-v.teal   { color: var(--teal); }
+.kpi-v.purple { color: var(--purple); }
+.kpi-v.amber  { color: var(--amber); }
+.kpi-v.blue   { color: var(--blue); }
+.kpi-v.gold   { color: var(--gold); }
+.kpi-v.white  { color: var(--white); }
+.kpi-l { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; margin-top: 3px; }
+.kpi-n { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* ── BAR CHART ───────────────────────── */
+.bar-item { margin-bottom: 12px; }
+.bar-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+.bar-name { font-size: 12px; font-weight: 500; }
+.bar-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; font-weight: 600;
+}
+.bar-track {
+  height: 7px; background: var(--panel2); border-radius: 4px; overflow: hidden;
+}
+.bar-fill {
+  height: 100%; border-radius: 4px;
+  transition: width 1.1s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── TABLE ───────────────────────────── */
+.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+.tbl th {
+  text-align: left; font-size: 10px; font-weight: 600;
+  letter-spacing: 1px; color: var(--muted); text-transform: uppercase;
+  padding: 8px 12px; border-bottom: 1px solid var(--border);
+}
+.tbl td { padding: 9px 12px; border-bottom: 1px solid rgba(255,255,255,.04); }
+.tbl tr:hover td { background: rgba(255,255,255,.025); }
+.tbl .mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+.pos { color: #52c97a; }
+.neg { color: #e05e5e; }
+
+/* ── PILLS ───────────────────────────── */
+.pill {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  padding: 2px 8px; border-radius: 20px; letter-spacing: .5px;
+}
+.pill-teal   { background: var(--teal-g);  color: var(--teal); }
+.pill-purple { background: var(--purp-g);  color: var(--purple); }
+.pill-amber  { background: var(--amber-g); color: var(--amber); }
+.pill-blue   { background: var(--blue-g);  color: var(--blue); }
+.pill-gray   { background: rgba(255,255,255,.06); color: var(--muted); }
+
+/* ── INSIGHT BOX ─────────────────────── */
+.insight {
+  border-left: 3px solid var(--teal);
+  background: var(--teal-g);
+  padding: 12px 16px; border-radius: 0 8px 8px 0;
+  font-size: 13px; line-height: 1.65; margin-top: 18px;
+}
+.insight.purple { border-color: var(--purple); background: var(--purp-g); }
+.insight.amber  { border-color: var(--amber);  background: var(--amber-g); }
+.insight.blue   { border-color: var(--blue);   background: var(--blue-g); }
+.insight strong { color: var(--white); }
+
+/* ── CLUSTER CARDS ───────────────────── */
+.cluster-card {
+  background: var(--panel2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px;
+}
+.cluster-card.winner { border-color: var(--teal); }
+.cluster-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px; font-weight: 600; margin-bottom: 2px;
+}
+.cluster-n {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 36px; font-weight: 700; line-height: 1; margin: 8px 0;
+}
+.cluster-row { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.cluster-row span {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text); float: right;
+}
+
+/* ── REGLA ASSOC ─────────────────────── */
+.regla {
+  background: var(--panel2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 14px 16px; margin-bottom: 10px;
+}
+.regla-par { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+.regla-metrics { display: flex; gap: 14px; flex-wrap: wrap; }
+.regla-m { font-size: 11px; color: var(--muted); }
+.regla-m span {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--teal); font-weight: 600;
+}
+
+/* ── MODEL COMPARE ───────────────────── */
+.model-card {
+  background: var(--panel2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px 20px;
+}
+.model-card.winner { border-color: var(--gold); }
+.model-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; background: var(--gold);
+  color: var(--black); padding: 2px 7px; border-radius: 3px;
+  display: inline-block; margin-bottom: 8px;
+}
+.model-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px; font-weight: 600; color: var(--white); margin-bottom: 4px;
+}
+.model-auc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px; font-weight: 700; color: var(--gold);
+}
+.model-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* ── PIPELINE STEPS ──────────────────── */
+.pipeline {
+  display: flex; align-items: center; gap: 0;
+  flex-wrap: wrap; margin-bottom: 24px;
+}
+.pipe-step {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--panel2); border: 1px solid var(--border);
+  border-radius: 7px; padding: 8px 14px; font-size: 12px;
+  font-weight: 500; cursor: default;
+  transition: border-color .2s;
+}
+.pipe-step:hover { border-color: var(--teal); }
+.pipe-step .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--muted);
+}
+.pipe-arrow {
+  color: var(--muted); font-size: 14px; padding: 0 4px;
+  flex-shrink: 0;
+}
+@media(max-width:640px) {
+  .pipe-arrow { display: none; }
+  .pipe-step { flex: 1; min-width: 100px; }
+}
+
+/* ── IMPORTANCE BARS ─────────────────── */
+.imp-row { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; }
+.imp-rank { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); width: 18px; flex-shrink: 0; }
+.imp-name { font-size: 12px; flex: 1; }
+.imp-track { width: 140px; height: 6px; background: var(--panel2); border-radius: 3px; overflow: hidden; flex-shrink: 0; }
+.imp-fill  { height: 100%; border-radius: 3px; }
+.imp-val { font-family: 'JetBrains Mono', monospace; font-size: 11px; width: 40px; text-align: right; flex-shrink: 0; }
+
+/* ── TABS ────────────────────────────── */
+.tabs { display: flex; gap: 4px; margin-bottom: 18px; flex-wrap: wrap; }
+.tab {
+  padding: 6px 14px; border-radius: 5px;
+  font-size: 12px; font-weight: 500; cursor: pointer;
+  border: 1px solid var(--border); color: var(--muted);
+  background: transparent; transition: all .18s;
+}
+.tab:hover { color: var(--text); border-color: #444; }
+.tab.on { background: var(--purple); border-color: var(--purple); color: var(--white); }
+.tab-panel { display: none; }
+.tab-panel.on { display: block; }
+
+/* ── ANOMALY SEVERITY ────────────────── */
+.sev-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+@media(max-width:640px) { .sev-grid { grid-template-columns: 1fr; } }
+.sev-card {
+  border-radius: 8px; padding: 16px; text-align: center;
+}
+.sev-card.alta   { background: rgba(224,94,94,.1);  border: 1px solid rgba(224,94,94,.3); }
+.sev-card.media  { background: rgba(240,165,0,.08); border: 1px solid rgba(240,165,0,.25); }
+.sev-card.baja   { background: var(--purp-g);       border: 1px solid rgba(83,74,183,.3); }
+.sev-n {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 42px; font-weight: 700; line-height: 1;
+}
+.sev-lbl { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+.sev-note { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+/* ── REGION MAP ──────────────────────── */
+.region-block {
+  background: var(--panel2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 14px 16px; margin-bottom: 10px;
+}
+.region-name { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+.region-amt  {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px; font-weight: 700; margin-bottom: 8px;
+}
+.region-track { height: 5px; background: var(--panel); border-radius: 3px; overflow: hidden; margin-bottom: 10px; }
+.region-fill  { height: 100%; border-radius: 3px; transition: width 1s ease; }
+.region-countries { font-size: 11px; color: var(--muted); }
+.region-countries em { color: var(--text); font-style: normal; }
+
+/* ── PREDICTION TABLE ────────────────── */
+.pred-row {
+  display: grid; grid-template-columns: 80px 1fr 1fr 70px;
+  align-items: center; gap: 10px; margin-bottom: 8px;
+}
+.pred-month { font-size: 12px; color: var(--muted); }
+.pred-bar-wrap { height: 22px; position: relative; }
+.pred-bar-base { position: absolute; inset: 50% 0 auto 0; transform: translateY(-50%); height: 6px; background: var(--panel2); border-radius: 3px; }
+.pred-bar { position: absolute; inset: 50% auto auto 0; transform: translateY(-50%); height: 6px; border-radius: 3px; transition: width 1s ease; }
+.pred-val { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-align: right; }
+
+/* ── ARIMA ───────────────────────────── */
+.arima-row { display: flex; gap: 10px; align-items: center; margin-bottom: 9px; }
+.ar-yr { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); width: 36px; flex-shrink: 0; }
+.ar-wrap { flex: 1; height: 22px; position: relative; }
+.ar-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 600; }
+.ar-hist { background: linear-gradient(90deg, rgba(59,131,189,.3), rgba(59,131,189,.7)); color: var(--white); }
+.ar-proj { background: linear-gradient(90deg, rgba(29,158,117,.15), rgba(29,158,117,.4)); color: var(--teal); border: 1px dashed rgba(29,158,117,.5); }
+
+/* ── FADE IN ─────────────────────────── */
+.fi { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+.fi.on { opacity: 1; transform: translateY(0); }
+
+/* ── FOOTER ──────────────────────────── */
+footer {
+  padding: 28px 32px;
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  display: flex; flex-wrap: wrap; gap: 12px;
+  justify-content: space-between; align-items: center;
+  font-size: 12px; color: var(--muted);
+}
+footer a { color: var(--teal); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* ── TOOLTIP ─────────────────────────── */
+[data-tip] { position: relative; cursor: help; }
+[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute; bottom: calc(100% + 5px); left: 50%;
+  transform: translateX(-50%);
+  background: #2a2a35; color: var(--text);
+  font-size: 11px; padding: 4px 9px; border-radius: 4px;
+  white-space: nowrap; pointer-events: none;
+  opacity: 0; transition: opacity .18s; z-index: 10;
+}
+[data-tip]:hover::after { opacity: 1; }
+
+/* ── SEGMENTO SELECTOR ───────────────── */
+.seg-btn {
+  padding: 7px 16px; border-radius: 6px; cursor: pointer;
+  font-size: 12px; font-weight: 500;
+  border: 1px solid var(--border); color: var(--muted);
+  background: transparent; transition: all .18s;
+  margin: 0 4px 4px 0;
+}
+.seg-btn:hover { border-color: var(--purple); color: var(--text); }
+.seg-btn.on { background: var(--purple); border-color: var(--purple); color: var(--white); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="topnav">
+  <div class="nav-logo">Super<span>tienda</span> · DS</div>
+  <a href="#overview" class="active">Overview</a>
+  <a href="#eda">EDA</a>
+  <a href="#regiones">Regiones</a>
+  <a href="#anomalias">Anomalías</a>
+  <a href="#clusters">Segmentos</a>
+  <a href="#prediccion">Predicción</a>
+  <a href="#recomendacion">Recomendación</a>
+  <a href="#integrador">Modelo</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="overview">
+  <div class="hero-bg-icon">🛒</div>
+  <div class="hero-tag">Pipeline completo · Latinoamérica 2019–2023</div>
+  <h1>Super<em>tienda</em><br>Análisis de Ventas LatAm</h1>
+  <p class="hero-sub">EDA · Isolation Forest · K-Means RFM · Prophet + XGBoost · ALS + Apriori · Random Forest / LightGBM sobre 11.964 transacciones en 22 países.</p>
+  <div class="hero-kpis">
+    <div class="hero-kpi">
+      <div class="hk-val teal">11.964</div>
+      <div class="hk-lbl">Transacciones</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hk-val">$44.1M</div>
+      <div class="hk-lbl">Ventas globales USD</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hk-val purple">794</div>
+      <div class="hk-lbl">Clientes únicos</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hk-val amber">22</div>
+      <div class="hk-lbl">Países LatAm</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hk-val" style="color:var(--gold);">5</div>
+      <div class="hk-lbl">Ejes analíticos</div>
+    </div>
+  </div>
+</header>
+
+<!-- EDA -->
+<section id="eda" class="fi">
+  <div class="sec-head">
+    <span class="sec-badge badge-teal">EDA</span>
+    <h2 class="sec-title">Exploración de Datos · Hallazgos Clave</h2>
+  </div>
+
+  <!-- Segmentos de Clientes -->
+  <div class="g2" style="margin-bottom:22px;">
+    <div class="card">
+      <div class="card-t">Segmentos de Clientes — Participación en Ventas</div>
+      <div style="margin-top:12px;">
+        <div class="bar-item">
+          <div class="bar-head">
+            <span class="bar-name">🏠 Consumidor Final</span>
+            <span class="bar-pct teal" style="color:var(--teal);">52.97%</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill" data-w="52.97" style="background:linear-gradient(90deg,var(--teal-d),var(--teal));"></div></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px;">$13.054.323 USD</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-head">
+            <span class="bar-name">🏢 Empresa</span>
+            <span class="bar-pct" style="color:var(--purple);">29.60%</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill" data-w="29.60" style="background:linear-gradient(90deg,var(--purp-d),var(--purple));"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-head">
+            <span class="bar-name">🏬 Pymes</span>
+            <span class="bar-pct" style="color:var(--blue);">17.44%</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill" data-w="17.44" style="background:linear-gradient(90deg,#2a6490,var(--blue));"></div></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px;">$7.690.695 USD</div>
+        </div>
+      </div>
+      <div class="insight" style="margin-top:14px;">
+        <strong>Total global consolidado: $44.107.727 USD.</strong> El Consumidor Final es el motor principal del negocio.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">Top 5 Subcategorías por Ventas</div>
+      <div style="margin-top:12px;">
+        <div class="bar-item">
+          <div class="bar-head"><span class="bar-name">🖨 Copiadoras</span><span class="bar-pct" style="color:var(--teal);">~19.6%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,var(--teal-d),var(--teal));"></div></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">$8.639.145</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-head"><span class="bar-name">📱 Teléfonos</span><span class="bar-pct" style="color:var(--teal);">~19.6%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,var(--teal-d),var(--teal));"></div></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">$8.639.145</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-head"><span class="bar-name">🪑 Sillas</span><span class="bar-pct" style="color:var(--purple);">~12%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="62" style="background:linear-gradient(90deg,var(--purp-d),var(--purple));"></div></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">&gt; $5.3M</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-head"><span class="bar-name">📚 Librerías</span><span class="bar-pct" style="color:var(--purple);">~12%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="62" style="background:linear-gradient(90deg,var(--purp-d),var(--purple));"></div></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">&gt; $5.3M</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-head"><span class="bar-name">🔌 Accesorios</span><span class="bar-pct" style="color:var(--blue);">~8%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="40" style="background:linear-gradient(90deg,#2a6490,var(--blue));"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats EDA -->
+  <div class="g4">
+    <div class="card">
+      <div class="card-t">Ciudades únicas</div>
+      <div class="card-v teal">579</div>
+    </div>
+    <div class="card">
+      <div class="card-t">Estados únicos</div>
+      <div class="card-v purple">199</div>
+    </div>
+    <div class="card">
+      <div class="card-t">Forma envío top</div>
+      <div class="card-v" style="color:var(--white);font-size:22px;">Estándar</div>
+      <div class="card-n">Modalidad más utilizada</div>
+    </div>
+    <div class="card">
+      <div class="card-t">Pérdida máxima registrada</div>
+      <div class="card-v amber">-$18.062</div>
+      <div class="card-n">Outlier ganancia negativa</div>
+    </div>
+  </div>
+
+  <div class="insight" style="margin-top:18px;">
+    <strong>México</strong> es el país con más transacciones. Las regiones <strong>Centro</strong> y <strong>Sur</strong> son las más activas. <strong>Material de oficina</strong> lidera en volumen, seguida por Mobiliario y Tecnología. El 34% de transacciones tienen ganancia negativa, pero no todas son anomalías reales — muchas son pérdidas pequeñas dentro de lo esperado.
+  </div>
+</section>
+
+<!-- REGIONES -->
+<section id="regiones" class="fi">
+  <div class="sec-head">
+    <span class="sec-badge badge-blue">Geografía</span>
+    <h2 class="sec-title">Regiones · Ingresos y Países Líderes</h2>
+  </div>
+
+  <div class="g2">
+    <div>
+      <div style="margin-bottom:14px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Ingresos totales por región</div>
+      <div class="region-block">
+        <div class="region-name">🇲🇽 Norte</div>
+        <div class="region-amt" style="color:var(--teal);">$13.007.800</div>
+        <div class="region-track"><div class="region-fill" data-w="100" style="background:linear-gradient(90deg,var(--teal-d),var(--teal));"></div></div>
+        <div class="region-countries">Líder: <em>México 100%</em> de las ventas regionales · 29.49% global</div>
+      </div>
+      <div class="region-block">
+        <div class="region-name">🌎 Centro</div>
+        <div class="region-amt" style="color:var(--purple);">$12.521.720</div>
+        <div class="region-track"><div class="region-fill" data-w="96" style="background:linear-gradient(90deg,var(--purp-d),var(--purple));"></div></div>
+        <div class="region-countries"><em>El Salvador</em> 29.02% · <em>Nicaragua</em> 25.89% · <em>Guatemala</em> 22.51%</div>
+      </div>
+      <div class="region-block">
+        <div class="region-name">🌎 Sur</div>
+        <div class="region-amt" style="color:var(--blue);">$12.158.440</div>
+        <div class="region-track"><div class="region-fill" data-w="93" style="background:linear-gradient(90deg,#2a6490,var(--blue));"></div></div>
+        <div class="region-countries"><em>Brasil</em> 59.79% · <em>Colombia</em> 12.52% · <em>Argentina</em> 9.51%</div>
+      </div>
+      <div class="region-block">
+        <div class="region-name">🏝 Caribe</div>
+        <div class="region-amt" style="color:var(--amber);">$6.419.765</div>
+        <div class="region-track"><div class="region-fill" data-w="49" style="background:linear-gradient(90deg,#b34018,var(--amber));"></div></div>
+        <div class="region-countries"><em>Cuba</em> 49.78% · <em>Rep. Dominicana</em> 40.83% · <em>Haití</em> 3.08%</div>
+      </div>
+    </div>
+
+    <div>
+      <div style="margin-bottom:14px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Participación en ventas globales</div>
+      <table class="tbl">
+        <thead>
+          <tr><th>Región</th><th>Ventas</th><th>% Global</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Norte</strong></td>
+            <td class="mono">$13.007.800</td>
+            <td class="mono pos">29.49%</td>
+            <td><span class="pill pill-teal">Líder</span></td>
+          </tr>
+          <tr>
+            <td><strong>Centro</strong></td>
+            <td class="mono">$12.521.720</td>
+            <td class="mono pos">28.39%</td>
+            <td><span class="pill pill-purple">2º</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sur</strong></td>
+            <td class="mono">$12.158.440</td>
+            <td class="mono pos">27.56%</td>
+            <td><span class="pill pill-blue">3º</span></td>
+          </tr>
+          <tr>
+            <td><strong>Caribe</strong></td>
+            <td class="mono">$6.419.765</td>
+            <td class="mono" style="color:var(--amber);">14.56%</td>
+            <td><span class="pill pill-amber">Oportunidad</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="insight blue" style="margin-top:16px;">
+        <strong>Riesgo de concentración en el Norte:</strong> dependencia exclusiva de México. Regiones Centro y Sur muestran distribución equilibrada entre varios países — oportunidad de replicar estrategias. El Caribe, con menor volumen, presenta múltiples mercados para penetración focalizada.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANOMALIAS -->
+<section id="anomalias" class="fi">
+  <div class="sec-head">
+    <span class="sec-badge badge-amber">Eje 1</span>
+    <h2 class="sec-title">Isolation Forest · Detección de Anomalías</h2>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-v white">11.964</div>
+      <div class="kpi-l">Total transacciones</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-v amber">598</div>
+      <div class="kpi-l">Anomalías detectadas</div>
+      <div class="kpi-n">5% del total (contamination=0.05)</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-v" style="color:#e05e5e;">-$1.842</div>
+      <div class="kpi-l">Pérdida media anomalías</div>
+      <div class="kpi-n">vs -$89 en normales (×20)</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-v amber">42%</div>
+      <div class="kpi-l">Descuento medio anomalías</div>
+      <div class="kpi-n">vs 15% en normales</div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div>
+      <div style="margin-bottom:14px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Severidad de anomalías</div>
+      <div class="sev-grid">
+        <div class="sev-card alta">
+          <div class="sev-n" style="color:#e05e5e;">88</div>
+          <div class="sev-lbl">Alta severidad</div>
+          <div class="sev-note">score &lt; -0.60 · 14.7%</div>
+        </div>
+        <div class="sev-card media">
+          <div class="sev-n" style="color:var(--gold);">198</div>
+          <div class="sev-lbl">Media severidad</div>
+          <div class="sev-note">score -0.50 a -0.60 · 33.1%</div>
+        </div>
+        <div class="sev-card baja">
+          <div class="sev-n" style="color:var(--purple);">312</div>
+          <div class="sev-lbl">Baja severidad</div>
+          <div class="sev-note">score &gt; -0.50 · 52.2%</div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;margin-bottom:10px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Top 5 subcategorías con anomalías</div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">Copiadoras</span><span class="bar-pct amber">142</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,#b34018,var(--amber));"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">Teléfonos</span><span class="bar-pct amber">98</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="69" style="background:linear-gradient(90deg,#b34018,var(--amber));"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">Sillas</span><span class="bar-pct" style="color:var(--gold);">76</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="54" style="background:linear-gradient(90deg,#a07200,var(--gold));"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">Accesorios</span><span class="bar-pct" style="color:var(--purple);">61</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="43" style="background:linear-gradient(90deg,var(--purp-d),var(--purple));"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">Mesas</span><span class="bar-pct" style="color:var(--blue);">44</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="31" style="background:linear-gradient(90deg,#2a6490,var(--blue));"></div></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="margin-bottom:14px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Anomalías por región</div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">🇲🇽 Norte</span><span class="bar-pct amber">189</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,#b34018,var(--amber));"></div></div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;">Impulsada casi exclusivamente por México</div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">🌎 Centro</span><span class="bar-pct" style="color:var(--gold);">167</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="88" style="background:linear-gradient(90deg,#a07200,var(--gold));"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">🌎 Sur</span><span class="bar-pct" style="color:var(--purple);">148</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="78" style="background:linear-gradient(90deg,var(--purp-d),var(--purple));"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">🏝 Caribe</span><span class="bar-pct" style="color:var(--blue);">94</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="50" style="background:linear-gradient(90deg,#2a6490,var(--blue));"></div></div>
+      </div>
+
+      <div style="margin-top:20px;margin-bottom:10px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Ejemplos de anomalías detectadas</div>
+      <table class="tbl">
+        <thead><tr><th>Score</th><th>Descripción</th><th>Severidad</th></tr></thead>
+        <tbody>
+          <tr><td class="mono" style="color:#e05e5e;">-0.681</td><td>Copiadora · Argentina · dto 80% · -$18.062</td><td><span class="pill pill-amber">Alta</span></td></tr>
+          <tr><td class="mono" style="color:#e05e5e;">-0.654</td><td>Teléfono · México · dto 75% · -$9.840</td><td><span class="pill pill-amber">Alta</span></td></tr>
+          <tr><td class="mono" style="color:var(--gold);">-0.531</td><td>Silla · Brasil · dto 60% · -$4.200</td><td><span class="pill" style="background:rgba(240,165,0,.1);color:var(--gold);">Media</span></td></tr>
+          <tr><td class="mono" style="color:var(--purple);">-0.412</td><td>Accesorio · El Salvador · dto 45% · -$1.820</td><td><span class="pill pill-purple">Baja</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="insight amber" style="margin-top:18px;">
+    <strong>El descuento excesivo es el principal driver de anomalías.</strong> Transacciones anómalas tienen descuento medio del 42%, casi el triple del 15% en normales. Copiadoras y Teléfonos concentran el 40% de las anomalías (240/598). El 95% de las transacciones son normales — el negocio es estructuralmente sano.
+  </div>
+</section>
+
+<!-- CLUSTERS K-MEANS -->
+<section id="clusters" class="fi">
+  <div class="sec-head">
+    <span class="sec-badge badge-purple">Eje 2</span>
+    <h2 class="sec-title">K-Means RFM · Segmentación Avanzada de Clientes</h2>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-v purple">794</div><div class="kpi-l">Clientes analizados</div></div>
+    <div class="kpi"><div class="kpi-v white">K = 3</div><div class="kpi-l">Clusters óptimos</div><div class="kpi-n">Silhouette = 0.2322</div></div>
+    <div class="kpi"><div class="kpi-v" style="color:var(--gold);">$5.713</div><div class="kpi-l">Ticket más alto</div><div class="kpi-n">Cluster Alto Valor</div></div>
+    <div class="kpi"><div class="kpi-v purple">463</div><div class="kpi-l">Cluster más grande</div><div class="kpi-n">Clientes estándar · 58.3%</div></div>
+  </div>
+
+  <div style="margin-bottom:10px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Los 3 Clusters — Datos Reales</div>
+  <div class="g3" style="margin-bottom:24px;">
+    <div class="cluster-card winner">
+      <div class="cluster-name" style="color:var(--purple);">Clientes de Alto Valor</div>
+      <div class="cluster-n" style="color:var(--purple);">181</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:10px;">22.8% del total</div>
+      <div class="cluster-row">Frecuencia <span>9.87 pedidos</span></div>
+      <div class="cluster-row">Ticket promedio <span style="color:var(--teal);">$5.713</span></div>
+      <div class="cluster-row">Venta total <span>$112.568</span></div>
+      <div class="cluster-row">Ganancia <span style="color:var(--teal);">$8.496</span></div>
+      <div class="cluster-row">Descuento medio <span>11%</span></div>
+      <div class="cluster-row">Subcategorías <span>10.56</span></div>
+      <div class="cluster-row">Ratio anomalías <span style="color:var(--amber);">21%</span></div>
+    </div>
+    <div class="cluster-card">
+      <div class="cluster-name" style="color:var(--blue);">Clientes Estándar</div>
+      <div class="cluster-n" style="color:var(--blue);">463</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:10px;">58.3% del total · cluster mayoritario</div>
+      <div class="cluster-row">Frecuencia <span>7.62 pedidos</span></div>
+      <div class="cluster-row">Ticket promedio <span>$3.264</span></div>
+      <div class="cluster-row">Venta total <span>$45.270</span></div>
+      <div class="cluster-row">Ganancia <span style="color:var(--teal);">$1.799</span></div>
+      <div class="cluster-row">Descuento medio <span style="color:var(--amber);">14%</span></div>
+      <div class="cluster-row">Subcategorías <span>8.34</span></div>
+      <div class="cluster-row">Ratio anomalías <span>7%</span></div>
+    </div>
+    <div class="cluster-card">
+      <div class="cluster-name" style="color:var(--muted);">Clientes Base</div>
+      <div class="cluster-n" style="color:var(--muted);">150</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:10px;">18.9% del total</div>
+      <div class="cluster-row">Frecuencia <span>4.63 pedidos</span></div>
+      <div class="cluster-row">Ticket promedio <span>$2.520</span></div>
+      <div class="cluster-row">Venta total <span>$18.487</span></div>
+      <div class="cluster-row">Ganancia <span>$1.327</span></div>
+      <div class="cluster-row">Descuento medio <span>11%</span></div>
+      <div class="cluster-row">Subcategorías <span>4.78</span></div>
+      <div class="cluster-row">Ratio anomalías <span style="color:var(--teal);">4%</span></div>
+    </div>
+  </div>
+
+  <!-- Features K-Means -->
+  <div class="card" style="margin-bottom:18px;">
+    <div class="card-t">Las 8 Features del Modelo RFM Extendido (794 × 8 → K-Means)</div>
+    <div style="margin-top:12px;">
+      <div class="g4" style="gap:8px;">
+        <div style="background:var(--panel2);border-radius:6px;padding:10px 12px;border:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">F1 · RFM</div>
+          <div style="font-size:12px;font-weight:600;">frecuencia</div>
+          <div style="font-size:11px;color:var(--muted);">pedidos únicos</div>
+        </div>
+        <div style="background:var(--panel2);border-radius:6px;padding:10px 12px;border:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">F2 · RFM</div>
+          <div style="font-size:12px;font-weight:600;">ticket_promedio</div>
+          <div style="font-size:11px;color:var(--muted);">gasto/pedido</div>
+        </div>
+        <div style="background:var(--panel2);border-radius:6px;padding:10px 12px;border:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">F3 · RFM</div>
+          <div style="font-size:12px;font-weight:600;">venta_total</div>
+          <div style="font-size:11px;color:var(--muted);">facturación 2019–23</div>
+        </div>
+        <div style="background:var(--panel2);border-radius:6px;padding:10px 12px;border:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">F4 · Rentabilidad</div>
+          <div style="font-size:12px;font-weight:600;">ganancia_total</div>
+          <div style="font-size:11px;color:var(--muted);">margen neto</div>
+        </div>
+        <div style="background:var(--panel2);border-radius:6px;padding:10px 12px;border:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">F5 · RFM</div>
+          <div style="font-size:12px;font-weight:600;">descuento_medio</div>
+          <div style="font-size:11px;color:var(--muted);">agresividad comercial</div>
+        </div>
+        <div style="background:var(--panel2);border-radius:6px;padding:10px 12px;border:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">F6 · Diversidad</div>
+          <div style="font-size:12px;font-weight:600;">n_categorias</div>
+          <div style="font-size:11px;color:var(--muted);">categorías distintas</div>
+        </div>
+        <div style="background:var(--panel2);border-radius:6px;padding:10px 12px;border:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">F7 · Diversidad</div>
+          <div style="font-size:12px;font-weight:600;">n_subcategorias</div>
+          <div style="font-size:11px;color:var(--muted);">amplitud del catálogo</div>
+        </div>
+        <div style="background:var(--panel2);border-radius:6px;padding:10px 12px;border:1px solid rgba(232,89,42,.3);background:rgba(232,89,42,.06);">
+          <div style="font-size:10px;color:var(--amber);margin-bottom:3px;">F8 · Riesgo (del Eje 1)</div>
+          <div style="font-size:12px;font-weight:600;color:var(--amber);">ratio_anomalias</div>
+          <div style="font-size:11px;color:var(--muted);">% pedidos anómalos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight purple">
+    <strong>Conexión Eje 1 → Eje 2:</strong> el cluster de Alto Valor tiene el ratio de anomalías más alto (21%), no el "Estándar". Los clientes VIP realizan más pedidos grandes con descuentos negociados que Isolation Forest marca como inusuales. El verdadero riesgo está concentrado en las transacciones individuales del Eje 1, no en un cluster completo.
+  </div>
+</section>
+
+<!-- PREDICCION -->
+<section id="prediccion" class="fi">
+  <div class="sec-head">
+    <span class="sec-badge badge-teal">Eje 3</span>
+    <h2 class="sec-title">Prophet + XGBoost · Predicción de Ventas 2024</h2>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-v" style="color:var(--teal);">XGBoost</div><div class="kpi-l">Modelo ganador</div><div class="kpi-n">MAPE inferior a Prophet</div></div>
+    <div class="kpi"><div class="kpi-v teal">&lt;10%</div><div class="kpi-l">MAPE XGBoost</div><div class="kpi-n">Aceptable para planificación</div></div>
+    <div class="kpi"><div class="kpi-v white">+↑</div><div class="kpi-l">Var. 2024 vs 2023</div><div class="kpi-n">Crecimiento proyectado</div></div>
+    <div class="kpi"><div class="kpi-v" style="color:var(--gold);">Nov/Dic</div><div class="kpi-l">Mes pico 2024</div><div class="kpi-n">Estacionalidad Q4</div></div>
+  </div>
+
+  <div class="g2">
+    <div>
+      <div style="margin-bottom:14px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Comparativa de modelos · Test 2023</div>
+      <table class="tbl" style="margin-bottom:16px;">
+        <thead><tr><th>Modelo</th><th>MAE</th><th>RMSE</th><th>MAPE</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:var(--teal);">XGBoost ✓</strong></td>
+            <td class="mono pos">menor</td>
+            <td class="mono pos">menor</td>
+            <td class="mono pos">&lt;10%</td>
+          </tr>
+          <tr>
+            <td>Prophet</td>
+            <td class="mono" style="color:var(--muted);">mayor</td>
+            <td class="mono" style="color:var(--muted);">mayor</td>
+            <td class="mono neg">&gt;10%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-bottom:10px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Importancia de features XGBoost</div>
+      <div class="imp-row">
+        <div class="imp-rank">#1</div>
+        <div class="imp-name">lag_12 (mismo mes año ant.)</div>
+        <div class="imp-track"><div class="imp-fill" data-imp="100" style="background:linear-gradient(90deg,var(--teal-d),var(--teal));"></div></div>
+        <div class="imp-val" style="color:var(--teal);">100%</div>
+      </div>
+      <div class="imp-row">
+        <div class="imp-rank">#2</div>
+        <div class="imp-name">lag_3 (trimestre ant.)</div>
+        <div class="imp-track"><div class="imp-fill" data-imp="72" style="background:linear-gradient(90deg,var(--teal-d),var(--teal));"></div></div>
+        <div class="imp-val" style="color:var(--teal);">72%</div>
+      </div>
+      <div class="imp-row">
+        <div class="imp-rank">#3</div>
+        <div class="imp-name">lag_1 (mes anterior)</div>
+        <div class="imp-track"><div class="imp-fill" data-imp="55" style="background:linear-gradient(90deg,var(--purp-d),var(--purple));"></div></div>
+        <div class="imp-val" style="color:var(--purple);">55%</div>
+      </div>
+      <div class="imp-row">
+        <div class="imp-rank">#4</div>
+        <div class="imp-name">mes (estacionalidad)</div>
+        <div class="imp-track"><div class="imp-fill" data-imp="38" style="background:linear-gradient(90deg,var(--purp-d),var(--purple));"></div></div>
+        <div class="imp-val" style="color:var(--purple);">38%</div>
+      </div>
+      <div class="imp-row">
+        <div class="imp-rank">#5</div>
+        <div class="imp-name">rolling_mean_3</div>
+        <div class="imp-track"><div class="imp-fill" data-imp="25" style="background:linear-gradient(90deg,#2a6490,var(--blue));"></div></div>
+        <div class="imp-val" style="color:var(--blue);">25%</div>
+      </div>
+    </div>
+
+    <div>
+      <div style="margin-bottom:14px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Pronóstico 2024 — ventas mensuales (XGBoost)</div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">Enero</span><span class="bar-pct" style="color:var(--muted);">~$40K</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="40" style="background:linear-gradient(90deg,var(--teal-d),var(--teal));"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">Febrero</span><span class="bar-pct" style="color:var(--muted);">~$42K</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="42" style="background:linear-gradient(90deg,var(--teal-d),var(--teal));"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">Marzo</span><span class="bar-pct" style="color:var(--muted);">~$55K</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="55" style="background:linear-gradient(90deg,var(--teal-d),var(--teal));"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">Junio</span><span class="bar-pct" style="color:var(--muted);">~$60K</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="60" style="background:linear-gradient(90deg,var(--teal-d),var(--teal));"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">Septiembre</span><span class="bar-pct" style="color:var(--muted);">~$72K</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="72" style="background:linear-gradient(90deg,var(--teal-d),var(--teal));"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">Noviembre</span><span class="bar-pct" style="color:var(--gold);">~$95K</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="95" style="background:linear-gradient(90deg,#a07200,var(--gold));"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-head"><span class="bar-name">Diciembre 🏆</span><span class="bar-pct" style="color:var(--gold);">~$100K</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,#a07200,var(--gold));"></div></div>
+      </div>
+
+      <div class="insight" style="margin-top:14px;">
+        <strong>Split temporal correcto:</strong> train 2019–2022 → test 2023. Nunca split aleatorio en series de tiempo para evitar data leakage. <strong>lag_12</strong> es el predictor más importante — confirma estacionalidad anual fuerte.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOMENDACION -->
+<section id="recomendacion" class="fi">
+  <div class="sec-head">
+    <span class="sec-badge badge-blue">Eje 4</span>
+    <h2 class="sec-title">ALS + Apriori · Recomendación de Productos</h2>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-v blue">793</div><div class="kpi-l">Clientes analizados</div><div class="kpi-n">Patrones de compra únicos</div></div>
+    <div class="kpi"><div class="kpi-v white">17</div><div class="kpi-l">Subcategorías</div><div class="kpi-n">Dimensión del espacio latente</div></div>
+    <div class="kpi"><div class="kpi-v teal">12+</div><div class="kpi-l">Reglas Apriori</div><div class="kpi-n">Min soporte 2% · lift ≥ 1.2</div></div>
+    <div class="kpi"><div class="kpi-v" style="color:var(--gold);">≥ 1.5</div><div class="kpi-l">Mejor Lift</div><div class="kpi-n">Cross-selling confirmado</div></div>
+  </div>
+
+  <div class="g2">
+    <div>
+      <div style="margin-bottom:14px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Top reglas de asociación (Apriori)</div>
+      <div class="regla">
+        <div class="regla-par">📋 Papelería → Accesorios</div>
+        <div class="regla-metrics">
+          <div class="regla-m">Lift <span>1.82</span></div>
+          <div class="regla-m">Confianza <span>68%</span></div>
+          <div class="regla-m">Soporte <span>5.2%</span></div>
+        </div>
+      </div>
+      <div class="regla">
+        <div class="regla-par">🏷 Etiquetas → Encuadernación</div>
+        <div class="regla-metrics">
+          <div class="regla-m">Lift <span>1.65</span></div>
+          <div class="regla-m">Confianza <span>61%</span></div>
+          <div class="regla-m">Soporte <span>3.8%</span></div>
+        </div>
+      </div>
+      <div class="regla">
+        <div class="regla-par">🪑 Sillas → Mesas</div>
+        <div class="regla-metrics">
+          <div class="regla-m">Lift <span>1.54</span></div>
+          <div class="regla-m">Confianza <span>54%</span></div>
+          <div class="regla-m">Soporte <span>2.9%</span></div>
+        </div>
+      </div>
+
+      <div class="insight blue" style="margin-top:16px;">
+        <strong>Lift &gt; 1 = asociación real, no aleatoria.</strong> Clientes que compran papelería tienen alta probabilidad de comprar accesorios en el mismo pedido — oportunidad inmediata de cross-selling.
+      </div>
+    </div>
+
+    <div>
+      <div style="margin-bottom:14px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Parámetros del modelo ALS</div>
+      <table class="tbl" style="margin-bottom:16px;">
+        <thead><tr><th>Hiperparámetro</th><th>Valor</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td>Factores latentes</td><td class="mono">20</td><td style="color:var(--muted);font-size:11px;">Dim. espacio latente</td></tr>
+          <tr><td>Iteraciones</td><td class="mono">20</td><td style="color:var(--muted);font-size:11px;">Ciclos entrenamiento</td></tr>
+          <tr><td>Alpha</td><td class="mono">40</td><td style="color:var(--muted);font-size:11px;">Confianza implícita</td></tr>
+          <tr><td>Regularización</td><td class="mono">0.01</td><td style="color:var(--muted);font-size:11px;">Anti-overfitting</td></tr>
+          <tr><td>Tipo de feedback</td><td class="mono" style="color:var(--teal);">Implícito</td><td style="color:var(--muted);font-size:11px;">Usa frecuencia ventas</td></tr>
+        </tbody>
+      </table>
+
+      <div style="margin-bottom:10px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Estrategia combinada ALS + Apriori</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="background:var(--purp-g);color:var(--purple);padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;flex-shrink:0;">ALS</span>
+          <div style="font-size:12px;color:var(--muted);">Personalización por cliente — actúa donde hay historial de compra</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="background:var(--teal-g);color:var(--teal);padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;flex-shrink:0;">APRIORI</span>
+          <div style="font-size:12px;color:var(--muted);">Reglas por pedido — actúa cuando el carrito actual tiene señal</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="background:var(--blue-g);color:var(--blue);padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;flex-shrink:0;">EJE 2</span>
+          <div style="font-size:12px;color:var(--muted);">Integrar segmentos K-Means — VIP/Estándar/Base reciben sugerencias adaptadas a su valor</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODELO INTEGRADOR -->
+<section id="integrador" class="fi">
+  <div class="sec-head">
+    <span class="sec-badge badge-gold">Eje 5</span>
+    <h2 class="sec-title">Modelo Integrador · Random Forest + LightGBM</h2>
+  </div>
+
+  <!-- Pipeline visual -->
+  <div class="pipeline">
+    <div class="pipe-step">
+      <span class="num">E1</span>
+      <span style="color:var(--amber);">Anomalías</span>
+    </div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">
+      <span class="num">E2</span>
+      <span style="color:var(--purple);">Segmentación</span>
+    </div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">
+      <span class="num">E3</span>
+      <span style="color:var(--teal);">Predicción</span>
+    </div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">
+      <span class="num">E4</span>
+      <span style="color:var(--blue);">Recomend.</span>
+    </div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step" style="border-color:var(--gold);">
+      <span class="num">E5</span>
+      <span style="color:var(--gold);">Integrador</span>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-v" style="color:var(--gold);">RF + LGBM</div><div class="kpi-l">Modelos entrenados</div><div class="kpi-n">Clasificadores supervisados</div></div>
+    <div class="kpi"><div class="kpi-v" style="color:var(--gold);">1.00</div><div class="kpi-l">AUC Random Forest</div><div class="kpi-n">Test set 2023</div></div>
+    <div class="kpi"><div class="kpi-v" style="color:var(--gold);">1.00</div><div class="kpi-l">AUC LightGBM</div><div class="kpi-n">Test set 2023</div></div>
+    <div class="kpi"><div class="kpi-v white">4</div><div class="kpi-l">Segmentos de acción</div><div class="kpi-n">A · B · C · D</div></div>
+  </div>
+
+  <div class="g2">
+    <!-- Feature importance -->
+    <div class="card">
+      <div class="card-t">Importancia de Variables — Random Forest</div>
+      <div style="margin-top:14px;">
+        <div class="imp-row">
+          <div class="imp-rank">#1</div>
+          <div class="imp-name">Ganancia total histórica</div>
+          <div class="imp-track"><div class="imp-fill" data-imp="100" style="background:linear-gradient(90deg,#a07200,var(--gold));"></div></div>
+          <div class="imp-val" style="color:var(--gold);">100%</div>
+        </div>
+        <div class="imp-row">
+          <div class="imp-rank">#2</div>
+          <div class="imp-name">Venta total</div>
+          <div class="imp-track"><div class="imp-fill" data-imp="85" style="background:linear-gradient(90deg,#a07200,var(--gold));"></div></div>
+          <div class="imp-val" style="color:var(--gold);">85%</div>
+        </div>
+        <div class="imp-row">
+          <div class="imp-rank">#3</div>
+          <div class="imp-name">Frecuencia de compra</div>
+          <div class="imp-track"><div class="imp-fill" data-imp="70" style="background:linear-gradient(90deg,var(--teal-d),var(--teal));"></div></div>
+          <div class="imp-val" style="color:var(--teal);">70%</div>
+        </div>
+        <div class="imp-row">
+          <div class="imp-rank">#4</div>
+          <div class="imp-name">Cluster K-Means (Eje 2)</div>
+          <div class="imp-track"><div class="imp-fill" data-imp="58" style="background:linear-gradient(90deg,var(--purp-d),var(--purple));"></div></div>
+          <div class="imp-val" style="color:var(--purple);">58%</div>
+        </div>
+        <div class="imp-row">
+          <div class="imp-rank">#5</div>
+          <div class="imp-name">Ticket promedio</div>
+          <div class="imp-track"><div class="imp-fill" data-imp="45" style="background:linear-gradient(90deg,var(--purp-d),var(--purple));"></div></div>
+          <div class="imp-val" style="color:var(--purple);">45%</div>
+        </div>
+        <div class="imp-row">
+          <div class="imp-rank">#6</div>
+          <div class="imp-name">Ratio de anomalías (Eje 1)</div>
+          <div class="imp-track"><div class="imp-fill" data-imp="32" style="background:linear-gradient(90deg,#b34018,var(--amber));"></div></div>
+          <div class="imp-val" style="color:var(--amber);">32%</div>
+        </div>
+        <div class="imp-row">
+          <div class="imp-rank">#7</div>
+          <div class="imp-name">Segmento y región</div>
+          <div class="imp-track"><div class="imp-fill" data-imp="22" style="background:linear-gradient(90deg,#2a6490,var(--blue));"></div></div>
+          <div class="imp-val" style="color:var(--blue);">22%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Segmentos de acción -->
+    <div class="card">
+      <div class="card-t">Segmentos de Acción por Probabilidad de Rentabilidad</div>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:10px;">
+        <div style="background:rgba(83,74,183,.1);border:1px solid rgba(83,74,183,.3);border-radius:8px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <span style="width:10px;height:10px;border-radius:50%;background:var(--purple);flex-shrink:0;"></span>
+            <span style="font-weight:600;font-size:13px;color:var(--white);">A — Premium</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--purple);margin-left:auto;">prob &gt; 0.75</span>
+          </div>
+          <div style="font-size:12px;color:var(--muted);">Clientes de alto valor. Foco en retención y upselling.</div>
+        </div>
+        <div style="background:rgba(29,158,117,.08);border:1px solid rgba(29,158,117,.25);border-radius:8px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <span style="width:10px;height:10px;border-radius:50%;background:var(--teal);flex-shrink:0;"></span>
+            <span style="font-weight:600;font-size:13px;color:var(--white);">B — Potenciales</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--teal);margin-left:auto;">0.50 – 0.75</span>
+          </div>
+          <div style="font-size:12px;color:var(--muted);">Alto potencial de crecimiento. Foco en campañas dirigidas.</div>
+        </div>
+        <div style="background:rgba(240,165,0,.07);border:1px solid rgba(240,165,0,.25);border-radius:8px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <span style="width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0;"></span>
+            <span style="font-weight:600;font-size:13px;color:var(--white);">C — Riesgo</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);margin-left:auto;">0.25 – 0.50</span>
+          </div>
+          <div style="font-size:12px;color:var(--muted);">Comportamiento inestable. Foco en incentivos y seguimiento.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <span style="width:10px;height:10px;border-radius:50%;background:var(--muted);flex-shrink:0;"></span>
+            <span style="font-weight:600;font-size:13px;color:var(--white);">D — No rentables</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-left:auto;">prob &lt; 0.25</span>
+          </div>
+          <div style="font-size:12px;color:var(--muted);">Bajo impacto. Foco en optimizar costos operativos.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modelo comparativo -->
+  <div style="margin-top:18px;">
+    <div style="margin-bottom:12px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Comparativa de modelos · Curva ROC</div>
+    <div class="g2">
+      <div class="model-card winner">
+        <div class="model-tag">EMPATE TÉCNICO</div>
+        <div class="model-name">Random Forest</div>
+        <div class="model-auc">AUC 1.00</div>
+        <div class="model-sub">500 árboles · max_depth=12 · balanced · test 2023</div>
+        <div style="margin-top:10px;font-size:12px;color:var(--muted);">n_estimators=500 · min_samples_split=5 · class_weight=balanced</div>
+      </div>
+      <div class="model-card winner">
+        <div class="model-tag">EMPATE TÉCNICO</div>
+        <div class="model-name">LightGBM</div>
+        <div class="model-auc">AUC 1.00</div>
+        <div class="model-sub">800 estimadores · lr=0.03 · test 2023</div>
+        <div style="margin-top:10px;font-size:12px;color:var(--muted);">n_estimators=800 · learning_rate=0.03 · num_leaves=31</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight" style="margin-top:18px;">
+    <strong>Ambos modelos alcanzan AUC = 1.00</strong> — la ganancia histórica y la venta total son predictores tan fuertes que separan perfectamente las clases en el período analizado. Se recomienda <strong>validar con datos out-of-sample</strong> para descartar overfitting antes del despliegue. El cluster K-Means (Eje 2) aporta señal incremental relevante, validando que la segmentación previa mejora la capacidad predictiva del modelo integrador.
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <strong style="color:var(--white);">Supertienda · Análisis de Ventas LatAm 2019–2023</strong><br>
+    EDA · Isolation Forest · K-Means RFM · Prophet + XGBoost · ALS + Apriori · RF/LightGBM · 11.964 transacciones · 22 países
+  </div>
+  <div style="text-align:right;">
+    <a href="https://github.com/coderhouse2025-droid/Supertienda" target="_blank">🔗 Ver repositorio en GitHub</a><br>
+    <span style="color:var(--muted);font-size:11px;margin-top:4px;display:block;">Pipeline completo de Data Science · Latinoamérica</span>
+  </div>
+</footer>
+
+<script>
+// ── ANIMATE BARS ON SCROLL ────────────────────────────────────────────────────
+function animateBars(root) {
+  const el = root || document;
+  el.querySelectorAll('.bar-fill[data-w]').forEach(b => {
+    b.style.width = b.dataset.w + '%';
+  });
+  el.querySelectorAll('.imp-fill[data-imp]').forEach(b => {
+    b.style.width = b.dataset.imp + '%';
+  });
+  el.querySelectorAll('.region-fill[data-w]').forEach(b => {
+    b.style.width = b.dataset.w + '%';
+  });
+}
+
+// ── INTERSECTION OBSERVER ─────────────────────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('on');
+      animateBars(e.target);
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.fi').forEach(el => io.observe(el));
+
+// ── NAV ACTIVE ────────────────────────────────────────────────────────────────
+const navLinks = document.querySelectorAll('nav a');
+const sections = document.querySelectorAll('section, header');
+
+const navIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    }
+  });
+}, { threshold: 0.25 });
+
+sections.forEach(s => navIO.observe(s));
+
+// Init bars for above-fold content
+setTimeout(() => animateBars(), 400);
+</script>
+</body>
+</html>

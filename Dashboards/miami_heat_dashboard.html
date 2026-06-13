@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miami Heat · Radiografía Estadística 2019–2024</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  :root {
+    --red: #98002E;
+    --red-light: #C0003A;
+    --gold: #F9A01B;
+    --gold-dim: #c47e10;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --panel: #181818;
+    --panel2: #1f1f1f;
+    --border: #2a2a2a;
+    --text: #E8E8E8;
+    --muted: #888;
+    --white: #fff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 4px;
+    padding: 0 24px; height: 52px;
+    overflow-x: auto;
+  }
+  .nav-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; letter-spacing: 2px;
+    color: var(--gold);
+    margin-right: 20px; flex-shrink: 0;
+  }
+  nav a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 12px; font-weight: 500; letter-spacing: .5px;
+    padding: 6px 12px; border-radius: 4px;
+    transition: all .2s; white-space: nowrap; flex-shrink: 0;
+  }
+  nav a:hover, nav a.active { color: var(--white); background: var(--panel); }
+  nav a.active { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #0A0A0A 0%, #1a0008 50%, #0A0A0A 100%);
+    padding: 72px 40px 60px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: '🏀';
+    position: absolute; right: 60px; top: 50%; transform: translateY(-50%);
+    font-size: 220px; opacity: .04; pointer-events: none;
+    animation: pulse 4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:.04} 50%{opacity:.07} }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 3px;
+    color: var(--red-light); text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 96px);
+    letter-spacing: 4px; line-height: 1;
+    color: var(--white); margin-bottom: 6px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    font-size: 15px; color: var(--muted);
+    max-width: 560px; margin-bottom: 36px;
+  }
+  .hero-stats {
+    display: flex; gap: 40px; flex-wrap: wrap;
+  }
+  .hero-stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px; color: var(--gold); line-height: 1;
+  }
+  .hero-stat-lbl {
+    font-size: 11px; letter-spacing: 1px;
+    color: var(--muted); text-transform: uppercase; margin-top: 2px;
+  }
+
+  /* SECTIONS */
+  section { padding: 48px 32px; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 32px;
+  }
+  .section-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2px;
+    background: var(--red); color: var(--white);
+    padding: 4px 10px; border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px; letter-spacing: 2px; color: var(--white);
+  }
+
+  /* GRID LAYOUTS */
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media(max-width:900px) {
+    .grid-4 { grid-template-columns: repeat(2,1fr); }
+    .grid-3 { grid-template-columns: repeat(2,1fr); }
+  }
+  @media(max-width:560px) {
+    .grid-2,.grid-3,.grid-4 { grid-template-columns: 1fr; }
+    section { padding: 32px 16px; }
+    .hero { padding: 48px 16px 40px; }
+  }
+
+  /* CARD */
+  .card {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 8px; padding: 20px;
+  }
+  .card-title {
+    font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+    color: var(--muted); text-transform: uppercase; margin-bottom: 8px;
+  }
+  .card-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px; color: var(--white); line-height: 1.1;
+  }
+  .card-val.gold { color: var(--gold); }
+  .card-val.red { color: var(--red-light); }
+  .card-note { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* WIN RATE BARS */
+  .winrate-item { margin-bottom: 14px; }
+  .wr-label { display: flex; justify-content: space-between; margin-bottom: 5px; }
+  .wr-name { font-weight: 500; font-size: 13px; }
+  .wr-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 600;
+  }
+  .wr-track {
+    height: 8px; background: var(--panel2); border-radius: 4px; overflow: hidden;
+  }
+  .wr-fill {
+    height: 100%; border-radius: 4px;
+    transition: width 1.2s cubic-bezier(.4,0,.2,1);
+    background: linear-gradient(90deg, var(--red), var(--gold));
+  }
+  .wr-fill.blue {
+    background: linear-gradient(90deg, #0055aa, #0099CC);
+  }
+
+  /* SEASON TABLE */
+  .data-table { width: 100%; border-collapse: collapse; }
+  .data-table th {
+    text-align: left; font-size: 11px; letter-spacing: 1px;
+    color: var(--muted); text-transform: uppercase;
+    padding: 8px 12px; border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.04);
+    font-size: 13px;
+  }
+  .data-table tr:hover td { background: rgba(255,255,255,.03); }
+  .tag-regular {
+    font-size: 10px; background: rgba(0,153,204,.15);
+    color: #0099CC; padding: 2px 8px; border-radius: 20px;
+    font-weight: 600;
+  }
+  .tag-playoffs {
+    font-size: 10px; background: rgba(152,0,46,.2);
+    color: var(--red-light); padding: 2px 8px; border-radius: 20px;
+    font-weight: 600;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .positive { color: #4CAF50; }
+  .negative { color: #EF5350; }
+
+  /* COMPARISON BARS (Playoffs vs Regular) */
+  .compare-row {
+    display: grid; grid-template-columns: 140px 1fr 70px;
+    align-items: center; gap: 12px; margin-bottom: 12px;
+  }
+  .compare-label { font-size: 12px; color: var(--text); text-align: right; }
+  .compare-bar-wrap { position: relative; height: 20px; }
+  .compare-bar-base {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    height: 6px; background: var(--panel2); border-radius: 3px;
+    width: 100%;
+  }
+  .compare-bar-fill {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    height: 6px; border-radius: 3px;
+    transition: width 1s ease;
+  }
+  .compare-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 600;
+  }
+
+  /* PLAYER CARDS */
+  .player-card {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 8px; padding: 18px; cursor: pointer;
+    transition: border-color .2s, transform .15s;
+  }
+  .player-card:hover {
+    border-color: var(--gold); transform: translateY(-2px);
+  }
+  .player-card.active { border-color: var(--red); }
+  .player-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 1px; color: var(--white);
+    margin-bottom: 4px;
+  }
+  .player-role {
+    font-size: 11px; letter-spacing: 1px;
+    color: var(--muted); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .player-top-stat { font-size: 13px; color: var(--gold); font-weight: 600; }
+  .player-top-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* PLAYER DETAIL */
+  #player-detail {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 8px; padding: 24px; margin-top: 20px;
+    display: none;
+  }
+  #player-detail.visible { display: block; }
+  .detail-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; letter-spacing: 2px; color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .detail-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+  .importance-row {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 10px;
+  }
+  .imp-rank {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--muted); width: 20px;
+    flex-shrink: 0;
+  }
+  .imp-name { font-size: 12px; flex: 1; }
+  .imp-bar-wrap { width: 160px; height: 6px; background: var(--panel2); border-radius: 3px; overflow: hidden; flex-shrink: 0; }
+  .imp-bar { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--red), var(--gold)); }
+  .imp-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--gold); width: 44px;
+    text-align: right; flex-shrink: 0;
+  }
+
+  /* KPI CARDS ROW */
+  .kpi-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+  .kpi-card {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px 20px; flex: 1; min-width: 140px;
+  }
+  .kpi-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px; line-height: 1;
+  }
+  .kpi-val.gold { color: var(--gold); }
+  .kpi-val.red { color: var(--red-light); }
+  .kpi-val.blue { color: #0099CC; }
+  .kpi-val.green { color: #66BB6A; }
+  .kpi-lbl { font-size: 11px; letter-spacing: .8px; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
+  .kpi-note { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  /* MODEL COMPARISON */
+  .model-compare {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  @media(max-width:640px) { .model-compare { grid-template-columns: 1fr; } }
+  .model-card {
+    background: var(--panel2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 20px;
+  }
+  .model-card.winner { border-color: var(--gold); }
+  .model-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; letter-spacing: 1px; margin-bottom: 2px;
+  }
+  .model-winner-badge {
+    display: inline-block; background: var(--gold); color: var(--black);
+    font-size: 9px; font-weight: 700; letter-spacing: 1px;
+    padding: 2px 6px; border-radius: 3px; margin-bottom: 10px;
+  }
+  .model-r2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px; color: var(--gold); font-weight: 600;
+  }
+  .model-mse { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* ARIMA TABLE */
+  .arima-row { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+  .arima-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--muted); width: 40px; flex-shrink: 0;
+  }
+  .arima-bar-wrap { flex: 1; height: 24px; position: relative; }
+  .arima-bar {
+    height: 100%; border-radius: 4px;
+    display: flex; align-items: center; padding-left: 8px;
+    font-size: 12px; font-weight: 600;
+    transition: width 1s ease;
+  }
+  .arima-bar.hist { background: linear-gradient(90deg, rgba(152,0,46,.4), rgba(152,0,46,.8)); color: var(--white); }
+  .arima-bar.forecast { background: linear-gradient(90deg, rgba(249,160,27,.2), rgba(249,160,27,.5)); color: var(--gold); border: 1px dashed var(--gold-dim); }
+
+  /* TABS */
+  .tabs { display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab {
+    padding: 7px 16px; border-radius: 5px; cursor: pointer;
+    font-size: 12px; font-weight: 500; letter-spacing: .5px;
+    border: 1px solid var(--border); color: var(--muted);
+    background: transparent; transition: all .2s;
+  }
+  .tab:hover { color: var(--text); border-color: #444; }
+  .tab.active { background: var(--red); border-color: var(--red); color: var(--white); }
+
+  /* TRAVEL ANALYSIS */
+  .travel-legend { display: flex; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+  .travel-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* FOOTER */
+  footer {
+    padding: 32px;
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 12px;
+    display: flex; flex-wrap: wrap; gap: 12px;
+    justify-content: space-between; align-items: center;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* INSIGHTS */
+  .insight {
+    border-left: 3px solid var(--gold);
+    background: rgba(249,160,27,.05);
+    padding: 12px 16px; border-radius: 0 6px 6px 0;
+    margin-top: 16px; font-size: 13px; color: var(--text);
+    line-height: 1.6;
+  }
+  .insight strong { color: var(--gold); }
+
+  /* ARI DISPLAY */
+  .ari-display {
+    text-align: center; padding: 32px;
+    background: var(--panel2); border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .ari-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px; color: var(--gold); line-height: 1;
+  }
+  .ari-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* Scroll animation */
+  .fade-in { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* Tooltip */
+  [data-tooltip] { position: relative; cursor: help; }
+  [data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute; bottom: calc(100% + 6px); left: 50%;
+    transform: translateX(-50%);
+    background: #333; color: var(--white);
+    font-size: 11px; padding: 5px 10px; border-radius: 4px;
+    white-space: nowrap; pointer-events: none;
+    opacity: 0; transition: opacity .2s;
+    z-index: 10;
+  }
+  [data-tooltip]:hover::after { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">HEAT · DS</div>
+  <a href="#overview" class="active">Overview</a>
+  <a href="#seasons">Temporadas</a>
+  <a href="#fatiga">Factor Fatiga</a>
+  <a href="#playoffs">ADN Playoffs</a>
+  <a href="#jugadores">Jugadores</a>
+  <a href="#arima">ARIMA</a>
+  <a href="#modelo">Modelo</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="overview">
+  <div class="hero-eyebrow">Análisis de Datos · NBA 2019–2024</div>
+  <h1>MIAMI<br><span>HEAT</span></h1>
+  <p class="hero-sub">Radiografía estadística de cinco temporadas críticas. Pipeline completo de Data Science: EDA, Regresión Logística, K-Means, Random Forest, ARIMA y XGBoost sobre 463 partidos (392 Temporada Regular + 71 Playoffs).</p>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-val">463</div>
+      <div class="hero-stat-lbl">Partidos analizados</div>
+      <div class="hero-stat-lbl" style="font-size:10px;margin-top:2px;">392 Regular · 71 Playoffs</div>
+    </div>
+    <div>
+      <div class="hero-stat-val">63%</div>
+      <div class="hero-stat-lbl">Win Rate Local</div>
+    </div>
+    <div>
+      <div class="hero-stat-val">5</div>
+      <div class="hero-stat-lbl">Temporadas</div>
+    </div>
+    <div>
+      <div class="hero-stat-val">5</div>
+      <div class="hero-stat-lbl">Modelos ML</div>
+    </div>
+    <div>
+      <div class="hero-stat-val">1.000</div>
+      <div class="hero-stat-lbl">ARI K-Means</div>
+    </div>
+  </div>
+</header>
+
+<!-- TEMPORADAS -->
+<section id="seasons" class="fade-in">
+  <div class="section-header">
+    <span class="section-badge">Eje 0</span>
+    <h2 class="section-title">Resumen por Temporada</h2>
+  </div>
+
+  <div class="grid-4" style="margin-bottom:28px;">
+    <div class="card">
+      <div class="card-title">Puntos · Temp. Regular (prom.)</div>
+      <div class="card-val gold">109.7</div>
+      <div class="card-note">pts/partido promedio 2019–2024</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Puntos · Playoffs (prom.)</div>
+      <div class="card-val red">102.6</div>
+      <div class="card-note">-6.5% vs temporada regular</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Asistencias · Temp. Regular</div>
+      <div class="card-val">25.4</div>
+      <div class="card-note">ast/partido</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Asistencias · Playoffs</div>
+      <div class="card-val red">22.6</div>
+      <div class="card-note">-11% · caída más pronunciada</div>
+    </div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Temporada</th>
+        <th>Partidos</th>
+        <th>Pts/Partido</th>
+        <th>Variación</th>
+        <th>Tipo</th>
+        <th>Win Rate Local</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mono">2019–2020</td>
+        <td>73</td>
+        <td class="mono">112.04</td>
+        <td class="muted mono">—</td>
+        <td><span class="tag-regular">Regular</span></td>
+        <td>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="flex:1;max-width:80px;height:5px;background:var(--panel2);border-radius:3px;">
+              <div style="width:64%;height:100%;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:3px;"></div>
+            </div>
+            <span class="mono">~64%</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="mono">2020–2021</td>
+        <td>72</td>
+        <td class="mono">108.07</td>
+        <td class="negative mono">▼ -3.5%</td>
+        <td><span class="tag-regular">Regular</span></td>
+        <td>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="flex:1;max-width:80px;height:5px;background:var(--panel2);border-radius:3px;">
+              <div style="width:58.8%;height:100%;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:3px;"></div>
+            </div>
+            <span class="mono">58.8%</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="mono">2021–2022</td>
+        <td>82</td>
+        <td class="mono">110.02</td>
+        <td class="positive mono">▲ +1.8%</td>
+        <td><span class="tag-regular">Regular</span></td>
+        <td>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="flex:1;max-width:80px;height:5px;background:var(--panel2);border-radius:3px;">
+              <div style="width:64.7%;height:100%;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:3px;"></div>
+            </div>
+            <span class="mono">64.7%</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="mono">2022–2023</td>
+        <td>82</td>
+        <td class="mono">109.48</td>
+        <td class="negative mono">▼ -0.5%</td>
+        <td><span class="tag-regular">Regular</span></td>
+        <td>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="flex:1;max-width:80px;height:5px;background:var(--panel2);border-radius:3px;">
+              <div style="width:64.7%;height:100%;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:3px;"></div>
+            </div>
+            <span class="mono">64.7%</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="mono">2023–2024</td>
+        <td>83</td>
+        <td class="mono">108.82</td>
+        <td class="negative mono">▼ -0.6%</td>
+        <td><span class="tag-regular">Regular</span></td>
+        <td>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="flex:1;max-width:80px;height:5px;background:var(--panel2);border-radius:3px;">
+              <div style="width:50%;height:100%;background:var(--red-light);border-radius:3px;"></div>
+            </div>
+            <span class="mono">50.0%</span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="insight">
+    <strong>Pico histórico en 2019</strong> con 112.04 pts/partido. La serie muestra una tendencia decreciente leve pero sostenida desde 2020, con una pequeña recuperación en 2021. El rango total de variación es de apenas ~3.2 pts/partido — reflejo de una extraordinaria consistencia ofensiva.
+  </div>
+</section>
+
+<!-- FACTOR FATIGA -->
+<section id="fatiga" class="fade-in">
+  <div class="section-header">
+    <span class="section-badge">Eje 1</span>
+    <h2 class="section-title">Factor Fatiga · Millas Recorridas</h2>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-val gold">63.0%</div>
+      <div class="kpi-lbl">Win Rate Local</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val" style="color:#9EC8F7;">55.0%</div>
+      <div class="kpi-lbl">Viaje Corto</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val" style="color:#6BA3D6;">52.75%</div>
+      <div class="kpi-lbl">Viaje Medio</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val" style="color:#4A7CB5;">50.6%</div>
+      <div class="kpi-lbl">Viaje Largo (visitante)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val red">-0.09</div>
+      <div class="kpi-lbl">Correlación Millas–Victoria</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Win Rate por Categoría de Viaje</div>
+      <div style="margin-top:12px;">
+        <div class="winrate-item">
+          <div class="wr-label">
+            <span class="wr-name">🏟 Local (0 millas)</span>
+            <span class="wr-pct gold">63.0%</span>
+          </div>
+          <div class="wr-track"><div class="wr-fill" data-pct="63"></div></div>
+        </div>
+        <div class="winrate-item">
+          <div class="wr-label">
+            <span class="wr-name">✈ Viaje Corto</span>
+            <span class="wr-pct" style="color:#9EC8F7;">55.0%</span>
+          </div>
+          <div class="wr-track"><div class="wr-fill blue" data-pct="55"></div></div>
+        </div>
+        <div class="winrate-item">
+          <div class="wr-label">
+            <span class="wr-name">✈ Viaje Medio</span>
+            <span class="wr-pct" style="color:#6BA3D6;">52.75%</span>
+          </div>
+          <div class="wr-track"><div class="wr-fill blue" data-pct="52.75"></div></div>
+        </div>
+        <div class="winrate-item">
+          <div class="wr-label">
+            <span class="wr-name">✈ Viaje Largo</span>
+            <span class="wr-pct" style="color:#4A7CB5;">50.6%</span>
+          </div>
+          <div class="wr-track"><div class="wr-fill blue" data-pct="50.6"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Modelo Predictivo · Regresión Logística</div>
+      <div class="grid-2" style="margin-top:12px;gap:10px;">
+        <div style="background:var(--panel2);border-radius:6px;padding:12px;text-align:center;">
+          <div class="mono" style="font-size:26px;color:var(--white);font-weight:700;">0.65</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px;">Accuracy</div>
+        </div>
+        <div style="background:var(--panel2);border-radius:6px;padding:12px;text-align:center;">
+          <div class="mono" style="font-size:26px;color:var(--gold);font-weight:700;">0.608</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px;">AUC-ROC</div>
+        </div>
+        <div style="background:var(--panel2);border-radius:6px;padding:12px;text-align:center;">
+          <div class="mono" style="font-size:26px;color:var(--white);font-weight:700;">0.64</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px;">Precisión</div>
+        </div>
+        <div style="background:var(--panel2);border-radius:6px;padding:12px;text-align:center;">
+          <div class="mono" style="font-size:26px;color:var(--white);font-weight:700;">0.61</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px;">F1-Score</div>
+        </div>
+      </div>
+      <div style="margin-top:14px;">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:5px;">
+          <span>AUC-ROC Cross-Validation</span>
+          <span class="mono" style="color:var(--gold);">0.568 ± 0.056</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);">
+          <span>Modelo extendido CV-AUC</span>
+          <span class="mono" style="color:var(--gold);">0.624 ± 0.064</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    La correlación entre millas recorridas y victorias como visitante es <strong>-0.09</strong>. No es un número que defina una temporada, pero sugiere una tendencia clara: cuanto más viaja Miami, menos gana. La <strong>localía sigue siendo oro</strong>: 63% de victorias en casa vs 50.6% en viajes largos.
+  </div>
+</section>
+
+<!-- ADN PLAYOFFS -->
+<section id="playoffs" class="fade-in">
+  <div class="section-header">
+    <span class="section-badge">Eje 2</span>
+    <h2 class="section-title">K-Means · ADN de Playoffs</h2>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-val gold">1.000</div>
+      <div class="kpi-lbl">Adjusted Rand Index</div>
+      <div class="kpi-note">Separación perfecta</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val" style="color:#0099CC;">5.2915</div>
+      <div class="kpi-lbl">Dist. Euclidiana</div>
+      <div class="kpi-note">Perfiles muy distintos</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val red">-11%</div>
+      <div class="kpi-lbl">Impacto Asistencias</div>
+      <div class="kpi-note">Métrica más afectada</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val green">-9.1%</div>
+      <div class="kpi-lbl">Pérdidas Balón</div>
+      <div class="kpi-note">Única "mejora" en playoffs</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <!-- Cluster comparison -->
+    <div class="card">
+      <div class="card-title">Variación % Playoffs vs Temporada Regular</div>
+      <div style="margin-top:16px;">
+        <div class="compare-row">
+          <div class="compare-label">Asistencias</div>
+          <div class="compare-bar-wrap">
+            <div class="compare-bar-base"></div>
+            <div class="compare-bar-fill" style="background:var(--red-light);width:80%;right:0;left:auto;"></div>
+          </div>
+          <div class="compare-pct negative">-11.02%</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">Robos</div>
+          <div class="compare-bar-wrap">
+            <div class="compare-bar-base"></div>
+            <div class="compare-bar-fill" style="background:var(--red-light);width:78%;right:0;left:auto;"></div>
+          </div>
+          <div class="compare-pct negative">-10.78%</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">Pérdidas balón</div>
+          <div class="compare-bar-wrap">
+            <div class="compare-bar-base"></div>
+            <div class="compare-bar-fill" style="background:#4CAF50;width:66%;right:0;left:auto;"></div>
+          </div>
+          <div class="compare-pct negative">-9.09%</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">Puntos</div>
+          <div class="compare-bar-wrap">
+            <div class="compare-bar-base"></div>
+            <div class="compare-bar-fill" style="background:var(--red-light);width:47%;right:0;left:auto;"></div>
+          </div>
+          <div class="compare-pct negative">-6.50%</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">Rebotes totales</div>
+          <div class="compare-bar-wrap">
+            <div class="compare-bar-base"></div>
+            <div class="compare-bar-fill" style="background:var(--red-light);width:37%;right:0;left:auto;"></div>
+          </div>
+          <div class="compare-pct negative">-5.13%</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">% Triples</div>
+          <div class="compare-bar-wrap">
+            <div class="compare-bar-base"></div>
+            <div class="compare-bar-fill" style="background:var(--red-light);width:30%;right:0;left:auto;"></div>
+          </div>
+          <div class="compare-pct negative">-4.17%</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">% Tiro Campo</div>
+          <div class="compare-bar-wrap">
+            <div class="compare-bar-base"></div>
+            <div class="compare-bar-fill" style="background:var(--red-light);width:24%;right:0;left:auto;"></div>
+          </div>
+          <div class="compare-pct negative">-3.29%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cluster profiles -->
+    <div class="card">
+      <div class="card-title">Promedios por Partido — Comparativa</div>
+      <table class="data-table" style="margin-top:10px;">
+        <thead>
+          <tr>
+            <th>Métrica</th>
+            <th style="color:#0099CC;">Regular</th>
+            <th style="color:var(--red-light);">Playoffs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Puntos</td><td class="mono" style="color:#0099CC;">109.69</td><td class="mono negative">102.55</td></tr>
+          <tr><td>Rebotes totales</td><td class="mono" style="color:#0099CC;">42.39</td><td class="mono negative">40.22</td></tr>
+          <tr><td>Asistencias</td><td class="mono" style="color:#0099CC;">25.41</td><td class="mono negative">22.61</td></tr>
+          <tr><td>Robos</td><td class="mono" style="color:#0099CC;">7.64</td><td class="mono negative">6.82</td></tr>
+          <tr><td>Pérdidas balón</td><td class="mono" style="color:#0099CC;">13.09</td><td class="mono positive">11.90</td></tr>
+          <tr><td>% Tiro campo</td><td class="mono" style="color:#0099CC;">46.54%</td><td class="mono negative">45.01%</td></tr>
+          <tr><td>% Triples</td><td class="mono" style="color:#0099CC;">36.58%</td><td class="mono negative">35.05%</td></tr>
+        </tbody>
+      </table>
+      <div class="ari-display" style="margin-top:16px;padding:16px 12px;">
+        <div class="ari-number">1.000</div>
+        <div class="ari-label">ARI · K-Means separó perfectamente Regular de Playoffs sin supervisión</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>El Heat no improvisa en playoffs — cambia de modo.</strong> La caída en asistencias (-11.02%) es la señal más reveladora: el equipo reduce su juego colectivo y pasa a un modelo más individualista, consistente con el rol elevado de Jimmy Butler. Las <strong>pérdidas de balón</strong> (-9.09%) son la única mejora: cada posesión vale más y el equipo toma decisiones más cuidadosas.
+  </div>
+</section>
+
+<!-- JUGADORES -->
+<section id="jugadores" class="fade-in">
+  <div class="section-header">
+    <span class="section-badge">Eje 3</span>
+    <h2 class="section-title">Random Forest · Importancia por Jugador</h2>
+  </div>
+
+  <div class="kpi-row" style="margin-bottom:24px;">
+    <div class="kpi-card">
+      <div class="kpi-val gold">14</div>
+      <div class="kpi-lbl">Jugadores modelados</div>
+      <div class="kpi-note">≥ 3 registros por jugador</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val" style="color:#0099CC;">300</div>
+      <div class="kpi-lbl">Árboles por modelo</div>
+      <div class="kpi-note">Alta robustez</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val red">% Triples</div>
+      <div class="kpi-lbl">Estadística top</div>
+      <div class="kpi-note">6.42% importancia (Butler)</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:8px;font-size:12px;color:var(--muted);">Seleccioná un jugador para ver su perfil estadístico →</div>
+  <div class="grid-4" id="player-grid">
+    <!-- Cards generated by JS -->
+  </div>
+
+  <div id="player-detail">
+    <div class="detail-title" id="detail-name">Jimmy Butler</div>
+    <div class="detail-sub" id="detail-role">Alero · Estrella franquicia</div>
+    <div id="detail-importances"></div>
+  </div>
+
+  <div class="insight" style="margin-top:20px;">
+    <strong>Patrón transversal:</strong> el % de triples aparece como variable relevante en la mayoría de los jugadores, incluso en perfiles interiores como Bam Adebayo, lo que sugiere que la eficiencia tridimensional es un predictor clave del rendimiento colectivo. Los <strong>Robos</strong> revelan el rol defensivo como driver de impacto en Butler (5.96%) y Herro (5.66%).
+  </div>
+</section>
+
+<!-- ARIMA -->
+<section id="arima" class="fade-in">
+  <div class="section-header">
+    <span class="section-badge">Eje 4</span>
+    <h2 class="section-title">ARIMA · Tendencia Temporal</h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Pts promedio/partido — Histórico + Pronóstico</div>
+      <div style="margin-top:16px;">
+        <div class="arima-row">
+          <div class="arima-year">2019</div>
+          <div class="arima-bar-wrap">
+            <div class="arima-bar hist" style="width:96%;">112.04</div>
+          </div>
+        </div>
+        <div class="arima-row">
+          <div class="arima-year">2020</div>
+          <div class="arima-bar-wrap">
+            <div class="arima-bar hist" style="width:85%;">108.07</div>
+          </div>
+        </div>
+        <div class="arima-row">
+          <div class="arima-year">2021</div>
+          <div class="arima-bar-wrap">
+            <div class="arima-bar hist" style="width:89%;">110.02</div>
+          </div>
+        </div>
+        <div class="arima-row">
+          <div class="arima-year">2022</div>
+          <div class="arima-bar-wrap">
+            <div class="arima-bar hist" style="width:88%;">109.48</div>
+          </div>
+        </div>
+        <div class="arima-row">
+          <div class="arima-year">2023</div>
+          <div class="arima-bar-wrap">
+            <div class="arima-bar hist" style="width:87%;">108.82</div>
+          </div>
+        </div>
+        <div style="height:1px;background:var(--border);margin:12px 0;"></div>
+        <div style="font-size:11px;color:var(--gold);margin-bottom:8px;letter-spacing:1px;">PRONÓSTICO →</div>
+        <div class="arima-row">
+          <div class="arima-year" style="color:var(--gold);">2024</div>
+          <div class="arima-bar-wrap">
+            <div class="arima-bar forecast" style="width:88%;">~109.5</div>
+          </div>
+        </div>
+        <div class="arima-row">
+          <div class="arima-year" style="color:var(--gold);">2025</div>
+          <div class="arima-bar-wrap">
+            <div class="arima-bar forecast" style="width:88%;">~109.5</div>
+          </div>
+        </div>
+        <div class="arima-row">
+          <div class="arima-year" style="color:var(--gold);">2026</div>
+          <div class="arima-bar-wrap">
+            <div class="arima-bar forecast" style="width:88%;">~109.5</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-title">Modelo Seleccionado</div>
+        <div style="margin-top:10px;">
+          <div style="display:flex;align-items:baseline;gap:8px;">
+            <span style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--gold);">ARIMA(1,0,1)</span>
+          </div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px;">AR(1) + MA(1) · Mejor entre 5 candidatos evaluados</div>
+        </div>
+        <table class="data-table" style="margin-top:14px;">
+          <tbody>
+            <tr><td>AIC</td><td class="mono positive">19.20</td></tr>
+            <tr><td>BIC</td><td class="mono">17.64</td></tr>
+            <tr><td>HQIC</td><td class="mono">15.01</td></tr>
+            <tr><td>Intercepto (const)</td><td class="mono gold">109.49 pts</td></tr>
+            <tr><td>Coef AR(1)</td><td class="mono negative">-0.8675 (p=0.000)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">Diagnósticos del Modelo</div>
+        <table class="data-table" style="margin-top:10px;">
+          <thead><tr><th>Test</th><th>p-valor</th><th>Resultado</th></tr></thead>
+          <tbody>
+            <tr><td>Ljung-Box (Q)</td><td class="mono">0.92</td><td class="positive">Sin autocorrelación ✓</td></tr>
+            <tr><td>Jarque-Bera (JB)</td><td class="mono">0.75</td><td class="positive">Residuos normales ✓</td></tr>
+            <tr><td>Heterocedasticidad</td><td class="mono">0.41</td><td class="positive">Varianza constante ✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    El <strong>coeficiente AR(1) = -0.8675</strong> es estadísticamente significativo (p=0.000): una temporada con puntuación sobre el promedio tiende a ser seguida por una inferior, y viceversa. Este <strong>patrón de reversión a la media</strong> es consistente con ciclos de rotación de plantel y gestión de carga en la NBA. El pronóstico converge a ~109.5 pts/partido — banda ofensiva estable.
+  </div>
+</section>
+
+<!-- MODELO INTEGRADOR -->
+<section id="modelo" class="fade-in">
+  <div class="section-header">
+    <span class="section-badge">Eje 5</span>
+    <h2 class="section-title">XGBoost + Gradient Boosting + SHAP</h2>
+  </div>
+
+  <div class="kpi-row" style="margin-bottom:24px;">
+    <div class="kpi-card">
+      <div class="kpi-val gold">~1.000</div>
+      <div class="kpi-lbl">Mejor R² (GB)</div>
+      <div class="kpi-note">R² = 0.9999999998</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">66</div>
+      <div class="kpi-lbl">Features totales</div>
+      <div class="kpi-note">Post One-Hot Encoding</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val" style="color:#0099CC;">172</div>
+      <div class="kpi-lbl">Registros</div>
+      <div class="kpi-note">Train 137 / Test 35</div>
+    </div>
+  </div>
+
+  <div class="model-compare">
+    <div class="model-card winner">
+      <div class="model-name" style="color:var(--gold);">Gradient Boosting</div>
+      <div class="model-winner-badge">GANADOR</div>
+      <div class="model-r2">R² 1.0000</div>
+      <div class="model-mse">MSE: 5.62e-13 · 250 árboles · lr=0.05</div>
+    </div>
+    <div class="model-card">
+      <div class="model-name" style="color:var(--text);">XGBoost</div>
+      <div style="height:21px;margin-bottom:10px;"></div>
+      <div class="model-r2" style="color:var(--muted);">R² 0.9999</div>
+      <div class="model-mse">MSE: 7.44e-08 · 300 árboles · lr=0.05</div>
+    </div>
+    <div class="model-card">
+      <div class="model-name" style="color:var(--text);">Random Forest</div>
+      <div style="height:21px;margin-bottom:10px;"></div>
+      <div class="model-r2" style="color:var(--muted);">R² 0.9999</div>
+      <div class="model-mse">MSE: 1.34e-08 · 400 árboles · depth=6</div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:20px;">
+    <div class="card">
+      <div class="card-title">Top 10 Features — XGBoost</div>
+      <div style="margin-top:14px;">
+        <div class="importance-row">
+          <div class="imp-rank">#1</div>
+          <div class="imp-name">Travel Category · Short Travel</div>
+          <div class="imp-bar-wrap"><div class="imp-bar" style="width:100%;"></div></div>
+          <div class="imp-pct">5.63%</div>
+        </div>
+        <div class="importance-row">
+          <div class="imp-rank">#2</div>
+          <div class="imp-name">Oponente · New Orleans Pelicans</div>
+          <div class="imp-bar-wrap"><div class="imp-bar" style="width:78%;"></div></div>
+          <div class="imp-pct">4.39%</div>
+        </div>
+        <div class="importance-row">
+          <div class="imp-rank">#3</div>
+          <div class="imp-name">Travel Category · Medium Travel</div>
+          <div class="imp-bar-wrap"><div class="imp-bar" style="width:75%;"></div></div>
+          <div class="imp-pct">4.25%</div>
+        </div>
+        <div class="importance-row">
+          <div class="imp-rank">#4</div>
+          <div class="imp-name">Millas Recorridas</div>
+          <div class="imp-bar-wrap"><div class="imp-bar" style="width:73%;"></div></div>
+          <div class="imp-pct">4.10%</div>
+        </div>
+        <div class="importance-row">
+          <div class="imp-rank">#5</div>
+          <div class="imp-name">Oponente · Portland Trail Blazers</div>
+          <div class="imp-bar-wrap"><div class="imp-bar" style="width:64%;"></div></div>
+          <div class="imp-pct">3.61%</div>
+        </div>
+        <div class="importance-row">
+          <div class="imp-rank">#6</div>
+          <div class="imp-name">Oponente · Cleveland Cavaliers</div>
+          <div class="imp-bar-wrap"><div class="imp-bar" style="width:63%;"></div></div>
+          <div class="imp-pct">3.57%</div>
+        </div>
+        <div class="importance-row">
+          <div class="imp-rank">#7</div>
+          <div class="imp-name">Oponente · Los Angeles Clippers</div>
+          <div class="imp-bar-wrap"><div class="imp-bar" style="width:63%;"></div></div>
+          <div class="imp-pct">3.57%</div>
+        </div>
+        <div class="importance-row">
+          <div class="imp-rank">#8</div>
+          <div class="imp-name">Oponente · Oklahoma City Thunder</div>
+          <div class="imp-bar-wrap"><div class="imp-bar" style="width:61%;"></div></div>
+          <div class="imp-pct">3.42%</div>
+        </div>
+        <div class="importance-row">
+          <div class="imp-rank">#9</div>
+          <div class="imp-name">Oponente · New York Knicks</div>
+          <div class="imp-bar-wrap"><div class="imp-bar" style="width:58%;"></div></div>
+          <div class="imp-pct">3.26%</div>
+        </div>
+        <div class="importance-row">
+          <div class="imp-rank">#10</div>
+          <div class="imp-name">Oponente · Philadelphia 76ers</div>
+          <div class="imp-bar-wrap"><div class="imp-bar" style="width:57%;"></div></div>
+          <div class="imp-pct">3.24%</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Resumen del Pipeline · 5 Ejes Analíticos</div>
+      <div style="margin-top:14px;">
+        <div style="border-left:2px solid var(--red);padding:10px 14px;margin-bottom:10px;background:rgba(152,0,46,.05);border-radius:0 4px 4px 0;">
+          <div style="font-weight:600;font-size:13px;margin-bottom:2px;">Eje 1 · Regresión Logística</div>
+          <div style="font-size:12px;color:var(--muted);">Fatiga por millas → AUC-ROC: 0.608 · Accuracy: 65%</div>
+        </div>
+        <div style="border-left:2px solid var(--gold);padding:10px 14px;margin-bottom:10px;background:rgba(249,160,27,.05);border-radius:0 4px 4px 0;">
+          <div style="font-weight:600;font-size:13px;margin-bottom:2px;">Eje 2 · K-Means Clustering</div>
+          <div style="font-size:12px;color:var(--muted);">ADN Playoffs → ARI: 1.000 · Separación perfecta</div>
+        </div>
+        <div style="border-left:2px solid #0099CC;padding:10px 14px;margin-bottom:10px;background:rgba(0,153,204,.05);border-radius:0 4px 4px 0;">
+          <div style="font-weight:600;font-size:13px;margin-bottom:2px;">Eje 3 · Random Forest</div>
+          <div style="font-size:12px;color:var(--muted);">14 jugadores modelados · 300 árboles · % Triples top feature</div>
+        </div>
+        <div style="border-left:2px solid #66BB6A;padding:10px 14px;margin-bottom:10px;background:rgba(102,187,106,.05);border-radius:0 4px 4px 0;">
+          <div style="font-weight:600;font-size:13px;margin-bottom:2px;">Eje 4 · ARIMA(1,0,1)</div>
+          <div style="font-size:12px;color:var(--muted);">Serie temporal → AIC: 19.20 · Pronóstico ~109.5 pts/partido</div>
+        </div>
+        <div style="border-left:2px solid #AB47BC;padding:10px 14px;background:rgba(171,71,188,.05);border-radius:0 4px 4px 0;">
+          <div style="font-weight:600;font-size:13px;margin-bottom:2px;">Eje 5 · XGBoost + GBM + SHAP</div>
+          <div style="font-size:12px;color:var(--muted);">66 features · R²=0.9999 · Mejor: Gradient Boosting</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    Los 3 modelos alcanzan <strong>R² > 0.9999</strong> — un resultado excepcional que confirma que las features del dataset capturan con alta fidelidad la variabilidad del win rate. La <strong>categoría de viaje</strong> (Short Travel) lidera el ranking de importancia XGBoost, reforzando los hallazgos del Eje 1 sobre el factor fatiga como variable crítica.
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <strong style="color:var(--white);">Miami Heat · Análisis de Datos 2019–2024</strong><br>
+    Proyecto de Data Science · Pipeline completo sobre 463 partidos NBA
+  </div>
+  <div style="text-align:right;">
+    <a href="https://github.com/coderhouse2025-droid/Miami-Heat" target="_blank">🔗 Ver repositorio en GitHub</a><br>
+    <span style="color:var(--muted);font-size:11px;margin-top:4px;display:block;">EDA · Reg. Logística · K-Means · Random Forest · ARIMA · XGBoost</span>
+  </div>
+</footer>
+
+<script>
+// ── PLAYER DATA ──────────────────────────────────────────────────────────────
+const players = [
+  {
+    name: 'Jimmy Butler',
+    role: 'Alero · Estrella franquicia',
+    topStat: '6.42%',
+    topLabel: '% de triples — Top feature',
+    importances: [
+      { name: '% de triples', pct: 6.42 },
+      { name: 'Robos', pct: 5.96 },
+      { name: 'Tiros libres anotados', pct: 5.27 },
+      { name: 'Dobles anotados', pct: 4.93 },
+      { name: 'Partidos jugados', pct: 4.91 },
+      { name: 'Triples intentados', pct: 4.86 },
+      { name: 'Edad', pct: 4.85 },
+      { name: 'Rebotes ofensivos', pct: 4.57 },
+      { name: 'Faltas personales', pct: 4.49 },
+      { name: 'Tapones / Bloqueos', pct: 4.23 },
+    ]
+  },
+  {
+    name: 'Bam Adebayo',
+    role: 'Pívot · Ancla defensiva',
+    topStat: '5.60%',
+    topLabel: 'Edad / Robos — features clave',
+    importances: [
+      { name: 'Edad', pct: 5.60 },
+      { name: 'Robos', pct: 5.60 },
+      { name: '% de triples', pct: 4.58 },
+      { name: 'Rebotes totales', pct: 4.50 },
+      { name: 'Partidos como titular', pct: 4.40 },
+    ]
+  },
+  {
+    name: 'Tyler Herro',
+    role: 'Escolta · Scorer versátil',
+    topStat: '5.66%',
+    topLabel: 'Robos — driver de impacto',
+    importances: [
+      { name: 'Robos', pct: 5.66 },
+      { name: 'Rebotes totales', pct: 5.28 },
+      { name: 'Triples intentados', pct: 4.90 },
+      { name: 'Tiros de campo intentados', pct: 4.52 },
+      { name: '% de triples', pct: 4.22 },
+    ]
+  },
+  {
+    name: 'Duncan Robinson',
+    role: 'Alero / Escolta · Tirador esp.',
+    topStat: '6.42%',
+    topLabel: '% de triples — domina el modelo',
+    importances: [
+      { name: '% de triples', pct: 6.42 },
+      { name: 'Rebotes totales', pct: 5.27 },
+      { name: 'Partidos jugados', pct: 4.91 },
+      { name: 'Tiros de campo intentados', pct: 4.55 },
+      { name: 'Triples intentados', pct: 4.45 },
+    ]
+  },
+  {
+    name: 'Kyle Lowry',
+    role: 'Base · Distribuidor',
+    topStat: '5.44%',
+    topLabel: '% Triples / Reb. ofensivos',
+    importances: [
+      { name: '% de triples', pct: 5.44 },
+      { name: 'Rebotes ofensivos', pct: 5.44 },
+      { name: 'Rebotes defensivos', pct: 4.08 },
+      { name: 'Partidos como titular', pct: 3.90 },
+      { name: 'Asistencias', pct: 3.80 },
+    ]
+  },
+  {
+    name: 'Chris Silva',
+    role: 'Ala-Pívot · Rotación',
+    topStat: '7.48%',
+    topLabel: 'Rebotes totales — importancia alta',
+    importances: [
+      { name: 'Rebotes totales', pct: 7.48 },
+      { name: 'Partidos jugados', pct: 6.12 },
+      { name: 'Triples intentados', pct: 6.12 },
+      { name: '% de triples', pct: 5.44 },
+      { name: 'Edad', pct: 4.08 },
+    ]
+  },
+];
+
+// Build player grid
+const grid = document.getElementById('player-grid');
+players.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = 'player-card';
+  card.innerHTML = `
+    <div class="player-name">${p.name}</div>
+    <div class="player-role">${p.role}</div>
+    <div class="player-top-stat">${p.topStat}</div>
+    <div class="player-top-lbl">${p.topLabel}</div>
+  `;
+  card.addEventListener('click', () => showPlayer(i, card));
+  grid.appendChild(card);
+});
+
+function showPlayer(idx, cardEl) {
+  document.querySelectorAll('.player-card').forEach(c => c.classList.remove('active'));
+  cardEl.classList.add('active');
+
+  const p = players[idx];
+  const detail = document.getElementById('player-detail');
+  document.getElementById('detail-name').textContent = p.name;
+  document.getElementById('detail-role').textContent = p.role;
+
+  const maxPct = Math.max(...p.importances.map(x => x.pct));
+  const html = p.importances.map((item, i) => `
+    <div class="importance-row">
+      <div class="imp-rank">#${i+1}</div>
+      <div class="imp-name">${item.name}</div>
+      <div class="imp-bar-wrap"><div class="imp-bar" style="width:${(item.pct/maxPct*100).toFixed(0)}%;"></div></div>
+      <div class="imp-pct">${item.pct.toFixed(2)}%</div>
+    </div>
+  `).join('');
+
+  document.getElementById('detail-importances').innerHTML = html;
+  detail.classList.add('visible');
+  detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ── ANIMATE WIN RATE BARS ────────────────────────────────────────────────────
+function animateBars() {
+  document.querySelectorAll('.wr-fill[data-pct]').forEach(el => {
+    el.style.width = el.dataset.pct + '%';
+  });
+}
+
+// ── INTERSECTION OBSERVER for fade-in ────────────────────────────────────────
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // Trigger bar animations when section enters view
+      if (entry.target.id === 'fatiga' || entry.target.querySelector('.wr-fill')) {
+        animateBars();
+      }
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// ── NAV ACTIVE STATE ──────────────────────────────────────────────────────────
+const navLinks = document.querySelectorAll('nav a');
+const sections = document.querySelectorAll('section, header');
+
+const navObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+
+sections.forEach(s => navObs.observe(s));
+
+// Trigger bars on load for first visible section
+setTimeout(animateBars, 600);
+</script>
+</body>
+</html>
