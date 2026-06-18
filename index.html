@@ -1021,19 +1021,16 @@ function openModal(id) {
 
 // ── VISOR DE PRESENTACIÓN EN NUEVA PESTAÑA ──
 // ── ABRIR CV EN NUEVA PÁGINA (con opción de imprimir) ──
-function openCV() {
-  const pdfUrl = 'https://github.com/coderhouse2025-droid/Portafolio-JM/raw/main/CV/CV%20-%20ORELLANA.pdf';
-
-  const html = `<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Juan Manuel Orellana · CV</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"><\/script>
-<style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+function openCV(){
+  const modal=document.getElementById("cvModal");
+  if(modal){
+    const frame=document.getElementById("cvFrame");
+    if(frame) frame.src="https://coderhouse2025-droid.github.io/Portafolio-JM/CV/CV%20-%20ORELLANA.pdf";
+    modal.classList.add("active");
+    return;
+  }
+  window.open("https://coderhouse2025-droid.github.io/Portafolio-JM/CV/CV%20-%20ORELLANA.pdf","_blank");
+}
   :root{
     --bg:#0a0a0a;--bg2:#111111;--bg3:#161616;
     --border:rgba(255,255,255,0.08);--border-h:rgba(255,255,255,0.16);
@@ -1127,6 +1124,22 @@ function openCV() {
         \`;
       });
   <\/script>
+
+<div id="cvModal" class="modal-overlay">
+  <div class="modal-container">
+    <button class="modal-close" onclick="document.getElementById('cvModal').classList.remove('active')">&times;</button>
+    <div class="modal-content">
+      <div class="modal-actions">
+        <a href="https://coderhouse2025-droid.github.io/Portafolio-JM/CV/CV%20-%20ORELLANA.pdf" class="btn btn-green" download>📥 Descargar CV</a>
+        <button class="btn btn-outline" onclick="document.getElementById('cvModal').classList.remove('active')">← Volver</button>
+      </div>
+      <div class="modal-visual">
+        <iframe id="cvFrame" src="https://coderhouse2025-droid.github.io/Portafolio-JM/CV/CV%20-%20ORELLANA.pdf" style="width:100%;height:100%;border:none"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>`;
 
@@ -1465,6 +1478,22 @@ function openPresentation(pdfUrl, title) {
     resizeTimer = setTimeout(() => renderPage(curPage, false), 200);
   });
 <\/script>
+
+<div id="cvModal" class="modal-overlay">
+  <div class="modal-container">
+    <button class="modal-close" onclick="document.getElementById('cvModal').classList.remove('active')">&times;</button>
+    <div class="modal-content">
+      <div class="modal-actions">
+        <a href="https://coderhouse2025-droid.github.io/Portafolio-JM/CV/CV%20-%20ORELLANA.pdf" class="btn btn-green" download>📥 Descargar CV</a>
+        <button class="btn btn-outline" onclick="document.getElementById('cvModal').classList.remove('active')">← Volver</button>
+      </div>
+      <div class="modal-visual">
+        <iframe id="cvFrame" src="https://coderhouse2025-droid.github.io/Portafolio-JM/CV/CV%20-%20ORELLANA.pdf" style="width:100%;height:100%;border:none"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>`;
 
@@ -1565,5 +1594,21 @@ sections.forEach(section => navObserver.observe(section));
 renderProjects();
 type();
 </script>
+
+<div id="cvModal" class="modal-overlay">
+  <div class="modal-container">
+    <button class="modal-close" onclick="document.getElementById('cvModal').classList.remove('active')">&times;</button>
+    <div class="modal-content">
+      <div class="modal-actions">
+        <a href="https://coderhouse2025-droid.github.io/Portafolio-JM/CV/CV%20-%20ORELLANA.pdf" class="btn btn-green" download>📥 Descargar CV</a>
+        <button class="btn btn-outline" onclick="document.getElementById('cvModal').classList.remove('active')">← Volver</button>
+      </div>
+      <div class="modal-visual">
+        <iframe id="cvFrame" src="https://coderhouse2025-droid.github.io/Portafolio-JM/CV/CV%20-%20ORELLANA.pdf" style="width:100%;height:100%;border:none"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
