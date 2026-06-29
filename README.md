@@ -87,3 +87,17 @@ Si deseas clonar este repositorio para examinar su código fuente o ejecutarlo e
 1. **Clonar el repositorio:**
    ```bash
    git clone [https://github.com/coderhouse2025-droid/PaginaWeb.git](https://github.com/coderhouse2025-droid/PaginaWeb.git)
+
+cd PaginaWeb
+# Para Python 3.x
+python -m http.server 8080
+
+📂 PaginaWeb/
+├── 📂 css/              # Hojas de estilo y configuraciones de diseño
+├── 📂 js/               # Scripts para dinamismo y lógica de filtrado de proyectos
+├── 📂 img/              # Activos visuales y mockups optimizados
+├── 📄 index.html        # Estructura e interfaz principal del portafolio
+├── 📄 manifest.json     # Configuración de la Progressive Web App (PWA)
+└── 📄 README.md         # Documentación técnica del repositorio
+
+
