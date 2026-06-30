@@ -83,10 +83,21 @@ Para auditar, modificar o replicar el entorno de desarrollo localmente, ejecute 
 
 ---
 
-## 🚀 Entornos de Producción
+## 👨‍💻 Autor
 
+Juan Manuel Orellana - Data Analytics • Business Intelligence • Data Science
+
+Portfolio Profesional: https://coderhouse2025-droid.github.io/Portafolio-JM/
+
+LinkedIn: https://www.linkedin.com/in/juan-manuel-orellana
+
+GitHub Perfil: https://github.com/coderhouse2025-droid
+
+---
+
+## 🚀 Entornos de Producción 
 * **Despliegue del Proyecto (Demo):** [https://coderhouse2025-droid.github.io/professional-portfolio-website/](https://coderhouse2025-droid.github.io/professional-portfolio-website/)
-* **Portfolio Oficial Implementado:** [https://coderhouse2025-droid.github.io/Portafolio-JM/](https://coderhouse2025-droid.github.io/Portafolio-JM/)
+* **Portafolio Oficial Implementado:** [https://coderhouse2025-droid.github.io/Portafolio-JM/](https://coderhouse2025-droid.github.io/Portafolio-JM/)
 
 ---
 
