@@ -71,50 +71,22 @@ Para auditar, modificar o replicar el entorno de desarrollo localmente, ejecute 
 
 ## 📁 Estructura del Proyecto
 
-```text
-professional-portfolio-website/
-│
-├── index.html          # Punto de entrada principal (Estructura semántica del Hub)
-├── assets/             # Recursos estáticos del sistema
-│   ├── css/            # Hojas de estilo y variables globales de diseño
-│   ├── js/             # Controladores de eventos e interactividad
-│   ├── img/            # Assets visuales, capturas y mockups de la interfaz
-│   └── documents/      # Archivos de descarga ejecutiva (CV, Certificaciones)
-│
-├── README.md           # Documentación técnica del repositorio[cite: 1]
-└── LICENSE            # Términos de licenciamiento de la solución[cite: 1]
+* **`professional-portfolio-website/`**
+  * **`index.html`** — Punto de entrada principal (Estructura semántica del Hub)
+  * **`assets/`** — Recursos estáticos del sistema
+    * **`css/`** — Hojas de estilo y variables globales de diseño
+    * **`js/`** — Controladores de eventos e interactividad
+    * **`img/`** — Assets visuales, capturas y mockups de la interfaz
+    * **`documents/`** — Archivos de descarga ejecutiva (CV, Certificaciones)
+  * **`README.md`** — Documentación técnica del repositorio
+  * **`LICENSE`** — Términos de licenciamiento de la solución
+
 ---
 
 ## 🚀 Entornos de Producción
 
-Despliegue del Proyecto (Demo): https://coderhouse2025-droid.github.io/professional-portfolio-website/
-
-Portafolio Oficial Implementado: https://coderhouse2025-droid.github.io/Portafolio-JM/
-
----
-
-## 🔮 Roadmap de Ingeniería
-
-[ ] PWA Integration: Configuración de manifest.json y Service Workers para permitir capacidades offline e instalación nativa como aplicación móvil de escritorio.
-
-[ ] Dynamic API Fetching: Integración con la API de GitHub para renderizar automáticamente las estadísticas de los repositorios y actualizar la sección de proyectos en tiempo real.
-
-[ ] Localization (i18n): Implementación de una arquitectura bilingüe dinámica (Español / Inglés) basada en archivos JSON de traducción.
-
-[ ] UI Analytics Dashboard: Incorporación de un módulo interactivo estático para ilustrar métricas clave del perfil profesional utilizando librerías ligeras de visualización (ej. Chart.js).
-
-[ ] Performance Tuning: Optimización avanzada de rendimiento para alcanzar puntuaciones del 100% en auditorías de Google Lighthouse (Performance, Accessibility, Best Practices, SEO).
-
----
-
-## 👨‍💻 Autor
-Juan Manuel Orellana Data Analytics • Business Intelligence • Data Science
-
-Portafolio Profesional: https://coderhouse2025-droid.github.io/Portafolio-JM/
-
-LinkedIn: https://www.linkedin.com/in/juan-manuel-orellana
-
-GitHub Perfil: https://github.com/coderhouse2025-droid
+* **Despliegue del Proyecto (Demo):** [https://coderhouse2025-droid.github.io/professional-portfolio-website/](https://coderhouse2025-droid.github.io/professional-portfolio-website/)
+* **Portfolio Oficial Implementado:** [https://coderhouse2025-droid.github.io/Portafolio-JM/](https://coderhouse2025-droid.github.io/Portafolio-JM/)
 
 ---
 
