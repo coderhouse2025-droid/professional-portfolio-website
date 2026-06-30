@@ -75,19 +75,13 @@ professional-portfolio-website/
 
 │
 ├── index.html          # Punto de entrada principal (Estructura semántica del Hub)
-
 ├── assets/             # Recursos estáticos del sistema
-
 │   ├── css/            # Hojas de estilo y variables globales de diseño
-
 │   ├── js/             # Controladores de eventos e interactividad
-
 │   ├── img/            # Assets visuales, capturas y mockups de la interfaz
-
 │   └── documents/      # Archivos de descarga ejecutiva (CV, Certificaciones)
 │
 ├── README.md           # Documentación técnica del repositorio
-
 └── LICENSE            # Términos de licenciamiento de la solución
 
 ---
@@ -96,7 +90,7 @@ professional-portfolio-website/
 
 Despliegue del Proyecto (Demo): https://coderhouse2025-droid.github.io/professional-portfolio-website/
 
-Portfolio Oficial Implementado: https://coderhouse2025-droid.github.io/Portafolio-JM/
+Portafolio Oficial Implementado: https://coderhouse2025-droid.github.io/Portafolio-JM/
 
 ---
 
@@ -117,7 +111,7 @@ Portfolio Oficial Implementado: https://coderhouse2025-droid.github.io/Portafoli
 ## 👨‍💻 Autor
 Juan Manuel Orellana Data Analytics • Business Intelligence • Data Science
 
-Portfolio Profesional: https://coderhouse2025-droid.github.io/Portafolio-JM/
+Portafolio Profesional: https://coderhouse2025-droid.github.io/Portafolio-JM/
 
 LinkedIn: https://www.linkedin.com/in/juan-manuel-orellana
 
