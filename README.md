@@ -69,7 +69,7 @@ Para auditar, modificar o replicar el entorno de desarrollo localmente, ejecute 
    ```bash
    git clone [https://github.com/coderhouse2025-droid/professional-portfolio-website.git](https://github.com/coderhouse2025-droid/professional-portfolio-website.git)
 
-📁 Estructura del Proyecto
+## 📁 Estructura del Proyecto
 
 professional-portfolio-website/
 │
@@ -85,7 +85,7 @@ professional-portfolio-website/
 
 ---
 
-🚀 Entornos de Producción
+## 🚀 Entornos de Producción
 
 Despliegue del Proyecto (Demo): https://coderhouse2025-droid.github.io/professional-portfolio-website/
 
@@ -93,7 +93,7 @@ Portfolio Oficial Implementado: https://coderhouse2025-droid.github.io/Portafoli
 
 ---
 
-🔮 Roadmap de Ingeniería
+## 🔮 Roadmap de Ingeniería
 
 [ ] PWA Integration: Configuración de manifest.json y Service Workers para permitir capacidades offline e instalación nativa como aplicación móvil de escritorio.
 
@@ -107,7 +107,7 @@ Portfolio Oficial Implementado: https://coderhouse2025-droid.github.io/Portafoli
 
 ---
 
-👨‍💻 Autor
+## 👨‍💻 Autor
 Juan Manuel Orellana Data Analytics • Business Intelligence • Data Science
 
 Portfolio Profesional: https://coderhouse2025-droid.github.io/Portafolio-JM/
@@ -118,5 +118,5 @@ GitHub Perfil: https://github.com/coderhouse2025-droid
 
 ---
 
-📄 Licencia
+## 📄 Licencia
 Este proyecto está bajo la Licencia MIT. Es de código abierto y libre para su uso, modificación y adaptación como base para soluciones de marca personal y portafolios tecnológicos profesionales.
