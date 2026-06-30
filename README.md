@@ -1,18 +1,17 @@
 # 📊 Professional Portfolio Website
 <img width="2686" height="1497" alt="Perfil_Profesional_Ciencia_de_Datos" src="https://github.com/user-attachments/assets/867ab8ff-d3ab-4fd8-a17a-cee7a54e798e" />
 
-
 <div align="center">
 
-### Responsive Personal Branding Website for Data Analytics Professionals
+### Responsive Personal Branding Hub for Data Engineering & Business Analytics
 
 [![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Ver_Sitio-brightgreen?style=for-the-badge)](https://coderhouse2025-droid.github.io/professional-portfolio-website/)
-[![GitHub Pages](https://img.shields.io/badge/Hosting-GitHub_Pages-181717?style=for-the-badge\&logo=github)](https://pages.github.com/)
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge\&logo=html5\&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge\&logo=css3\&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge\&logo=javascript\&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![GitHub Pages](https://img.shields.io/badge/Hosting-GitHub_Pages-181717?style=for-the-badge&logo=github)](https://pages.github.com/)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-**Diseño y desarrollo de una solución web profesional para marca personal orientada a Data Analytics, Business Intelligence y Data Science.**
+**Diseño y desarrollo de una plataforma web estática de alto rendimiento para la consolidación de marca personal, orientada a Data Analytics, Data Engineering y Gobernanza de la Información.**
 
 </div>
 
@@ -20,215 +19,52 @@
 
 ## 📌 Descripción
 
-**Professional Portfolio Website** es un proyecto de desarrollo web enfocado en la construcción de sitios profesionales de marca personal para perfiles tecnológicos y analíticos.
+**Professional Portfolio Website** es una solución de arquitectura web estática concebida como el punto de confluencia donde la ingeniería de datos se encuentra con la analítica de negocio. El proyecto centraliza repositorios técnicos, flujos de automatización y arquitecturas de control en una interfaz unificada, intuitiva y de alto impacto visual.
 
-El objetivo principal fue diseñar una solución moderna, rápida y visualmente atractiva que permita presentar experiencia profesional, habilidades técnicas, proyectos, formación académica y datos de contacto dentro de una única plataforma.
-
-El proyecto fue desarrollado utilizando exclusivamente tecnologías web nativas, priorizando rendimiento, mantenibilidad, accesibilidad y compatibilidad multiplataforma.
+Desarrollado bajo la filosofía *Vanilla Web*, el sitio prescinde de frameworks complejos o dependencias externas críticas, garantizando tiempos de carga óptimos, máxima seguridad y un mantenimiento ágil a largo plazo.
 
 <img width="1264" height="843" alt="Mockup -Web" src="https://github.com/user-attachments/assets/3a8bec18-84f0-42d5-9b09-15d0aa5bdab1" />
----
-
-## 🎯 Caso de Uso
-
-Este proyecto fue concebido como una solución adaptable para profesionales que buscan fortalecer su presencia digital y diferenciarse en procesos de selección o networking profesional.
-
-Aplicable a perfiles de:
-
-* 📊 Data Analytics
-* 📈 Business Intelligence
-* 🤖 Data Science
-* 💼 Finanzas y Control de Gestión
-* 🏢 Consultoría de Negocios
-* 💻 Tecnología y Transformación Digital
-
-También puede utilizarse como base para:
-
-* Portfolio profesional
-* Currículum online
-* Sitio corporativo personal
-* Landing page profesional
-* Presentación ejecutiva digital
 
 ---
 
-## ✨ Funcionalidades Principales
+## 🎯 Caso de Uso y Perfil Objetivo
 
-### 👤 Perfil Profesional
+Esta plataforma actúa como una infraestructura de presentación ejecutiva para perfiles técnicos especializados en la validación, consistencia y visualización de datos complejos:
 
-* Presentación ejecutiva.
-* Resumen profesional.
-* Información de contacto.
-* Enlaces a LinkedIn y GitHub.
-
-### 💼 Experiencia Laboral
-
-* Timeline profesional.
-* Roles y responsabilidades.
-* Logros destacados.
-
-### 🎓 Formación Académica
-
-* Estudios universitarios.
-* Certificaciones.
-* Formación continua.
-
-### 🛠️ Stack Tecnológico
-
-* Visualización organizada de habilidades.
-* Indicadores de especialización.
-* Agrupación por categorías.
-
-### 📂 Proyectos
-
-* Cards dinámicas de proyectos.
-* Acceso directo a repositorios.
-* Navegación intuitiva.
-
-### 📄 Curriculum Vitae
-
-* Descarga directa.
-* Acceso rápido para reclutadores.
-
-### 📱 Diseño Responsive
-
-* Desktop.
-* Tablet.
-* Mobile.
+* **Data Science & Analytics:** Exposición estructurada de modelos predictivos y tableros interactivos.
+* **Business Intelligence & Control:** Presentación de métricas de negocio, optimización financiera y KPIs.
+* **Auditoría de Datos y Gobernanza:** Demostración de flujos automatizados de control, cumplimiento normativo y seguridad de activos de información.
 
 ---
 
-## 🏗️ Arquitectura Técnica
+## ✨ Funcionalidades Destacadas
 
-El proyecto fue desarrollado mediante una arquitectura estática basada en tecnologías web nativas.
-
-```text
-HTML5
-CSS3
-JavaScript (Vanilla)
-GitHub Pages
-```
-
-### Principios de Diseño
-
-* Sin frameworks frontend.
-* Sin dependencias críticas externas.
-* Alto rendimiento.
-* Código limpio y mantenible.
-* SEO Friendly.
-* Compatibilidad multiplataforma.
+* **Consolidación de Identidad Técnica:** Integración nativa mediante hipervínculos clave a ecosistemas de producción (GitHub, LinkedIn) y descarga directa de documentación ejecutiva (CV).
+* **Timeline de Trayectoria Corporativa:** Línea de tiempo interactiva diseñada para desglosar hitos de gestión, auditoría y roles de coordinación de seguridad de la información.
+* **Showcase de Proyectos Dinámicos:** Grid adaptivo optimizado para la visualización de repositorios de código, herramientas de automatización de flujos (n8n, Python) y cuadros de mando.
+* **Arquitectura Mobile-First:** Maquetación responsiva avanzada fluida que garantiza una visualización consistente e íntegra tanto en terminales móviles como en estaciones de trabajo desktop.
 
 ---
 
-## ⚙️ Tecnologías Utilizadas
+## 🏗️ Arquitectura y Tecnologías
 
-| Categoría         | Tecnología             |
-| ----------------- | ---------------------- |
-| Estructura        | HTML5                  |
-| Estilos           | CSS3                   |
-| Interactividad    | JavaScript Vanilla     |
-| Responsive Design | Flexbox + CSS Grid     |
-| Versionado        | Git                    |
-| Repositorio       | GitHub                 |
-| Hosting           | GitHub Pages           |
-| SEO               | Open Graph + Meta Tags |
+El Core del proyecto se rige por principios de desarrollo limpio (*Clean Code*) y una estructura desacoplada basada en estándares web nativos:
 
----
-
-## 📊 Características Técnicas
-
-| Característica        | Valor          |
-| --------------------- | -------------- |
-| Arquitectura          | Static Website |
-| Framework Frontend    | Ninguno        |
-| Dependencias Externas | Mínimas        |
-| Responsive Design     | ✅              |
-| SEO Optimizado        | ✅              |
-| GitHub Pages          | ✅              |
-| Accesibilidad         | ✅              |
-| Rendimiento           | Alto           |
+| Capa / Categoría | Componente Tecnológico | Propósito Técnico |
+| :--- | :--- | :--- |
+| **Estructura y Semántica** | HTML5 Semántico | Optimización SEO, accesibilidad (A11y) y legibilidad por rastreadores. |
+| **Diseño y Layout** | CSS3 (Flexbox & Grid) | Interfaz fluida sin sobrecarga de bibliotecas pesadas de estilos. |
+| **Lógica e Interacción** | JavaScript (Vanilla) | Manipulación eficiente del DOM y consumo dinámico de datos. |
+| **Versionado y Control** | Git / GitHub | Trazabilidad del código fuente y auditoría de cambios. |
+| **CI/CD y Despliegue** | GitHub Pages | Pipeline automatizado de integración y despliegue continuo de la rama principal. |
+| **Metadatos** | Open Graph Protocol | Optimización de visualización en plataformas profesionales como LinkedIn. |
 
 ---
 
-## 📁 Estructura del Proyecto
+## ⚙️ Configuración y Despliegue Local
 
-```text
-professional-portfolio-website/
-│
-├── index.html
-├── assets/
-│   ├── css/
-│   ├── js/
-│   ├── img/
-│   └── documents/
-│
-├── README.md
-└── LICENSE
-```
+Para auditar, modificar o replicar el entorno de desarrollo localmente, ejecute los siguientes comandos en su terminal:
 
----
-
-## 🚀 Demo Online
-
-🌐 **Ver sitio en producción**
-
-https://coderhouse2025-droid.github.io/professional-portfolio-website/
-
----
-
-## 🌐 Implementación en Producción
-
-La arquitectura y conceptos desarrollados en este proyecto fueron utilizados como base para la construcción del portfolio profesional oficial:
-
-🔗 https://coderhouse2025-droid.github.io/Portafolio-JM/
-
----
-
-## 💡 Aspectos Destacados
-
-* Diseño profesional orientado al mercado tecnológico.
-* Excelente experiencia de usuario.
-* Alta velocidad de carga.
-* Arquitectura ligera y escalable.
-* Fácil mantenimiento.
-* Optimización para reclutamiento y marca personal.
-* Compatible con dispositivos móviles y escritorio.
-
----
-
-## 🔮 Roadmap
-
-* 🌙 Implementación de modo oscuro.
-* 🌎 Versión bilingüe (Español / Inglés).
-* 📊 Dashboard interactivo de métricas.
-* 🔗 Integración con APIs externas.
-* ⚡ Mejoras continuas de accesibilidad.
-* 📈 Optimización avanzada de SEO.
-
----
-
-## 👨‍💻 Autor
-
-**Juan Manuel Orellana**
-
-Data Analytics • Business Intelligence • Data Science
-
-### Portfolio Profesional
-
-🔗 https://coderhouse2025-droid.github.io/Portafolio-JM/
-
-### LinkedIn
-
-🔗 https://www.linkedin.com/in/juan-manuel-orellana
-
-### GitHub
-
-🔗 https://github.com/coderhouse2025-droid
-
----
-
-## 📄 Licencia
-
-MIT License
-
-Este proyecto puede utilizarse como referencia educativa e inspiración para el desarrollo de portfolios profesionales, sitios de marca personal y soluciones web orientadas a perfiles tecnológicos.
+1. **Clonar el repositorio:**
+   ```bash
+   git clone [https://github.com/coderhouse2025-droid/professional-portfolio-website.git](https://github.com/coderhouse2025-droid/professional-portfolio-website.git)
