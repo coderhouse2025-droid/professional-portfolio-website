@@ -87,7 +87,7 @@ Para auditar, modificar o replicar el entorno de desarrollo localmente, ejecute 
 
 Juan Manuel Orellana - Data Analytics • Business Intelligence • Data Science
 
-Portafolio Profesional: https://coderhouse2025-droid.github.io/Portafolio-JM/
+Portafolio Profesional: https://coderhouse2025-droid.github.io/professional-portfolio-website/
 
 LinkedIn: https://www.linkedin.com/in/juan-manuel-orellana
 
@@ -96,7 +96,7 @@ GitHub Perfil: https://github.com/coderhouse2025-droid
 ---
 
 ## 🚀 Entornos de Producción 
-* **Despliegue del Proyecto (Demo):** [https://coderhouse2025-droid.github.io/professional-portfolio-website/](https://coderhouse2025-droid.github.io/professional-portfolio-website/)
+* **Despliegue del Proyecto (Demo):** [hhttps://coderhouse2025-droid.github.io/professional-portfolio-website/)
 * **Portafolio Oficial Implementado:** [https://coderhouse2025-droid.github.io/Portafolio-JM/](https://coderhouse2025-droid.github.io/Portafolio-JM/)
 
 ---
