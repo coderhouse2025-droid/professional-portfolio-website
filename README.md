@@ -102,4 +102,5 @@ GitHub Perfil: https://github.com/coderhouse2025-droid
 ---
 
 ## 📄 Licencia
-Este proyecto está bajo la Licencia MIT. Es de código abierto y libre para su uso, modificación y adaptación como base para soluciones de marca personal y portafolios tecnológicos profesionales.
+
+Este proyecto está bajo la [Licencia MIT](LICENSE) — libre para uso como referencia, aprendizaje o desarrollo de proyectos propios.
